@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <window.hpp>
+#include <sprite.hpp>
 
 
 
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
 	bool game_over = false;
 	window win = window("AvoidGator", W, H);
 
+	sprite ademir = sprite(win, "res/sprites/ademir/Ademir Jr..png", { 0, 0, 20, 20 }, { 0, 0, 64, 64 }, 4, 1);
+
 	SDL_Event evn;
 
 	while (!game_over) {
@@ -28,6 +31,8 @@ int main(int argc, char* argv[]) {
 				game_over = true;
 
 		win.clear();
+		ademir.draw();
+		ademir.advance_x_frame();
 		win.update();
 
 	}
