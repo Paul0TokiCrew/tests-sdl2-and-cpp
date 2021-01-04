@@ -14,10 +14,11 @@
 
 #define FPS 20
 
-#define IDLE 0
-#define LEFT 1
-#define RIGHT 2
+#define LEFT 0
+#define RIGHT 1
 
+#define IDLE 2
+#define MOVE 3
 
 
 int main(int argc, char* argv[]) {
@@ -27,30 +28,38 @@ int main(int argc, char* argv[]) {
 
 
 	bool game_over = false;
-	int x = 0, y = 0, w = 64, h = 64;
+	int x = 0, y = 140, w = 64, h = 64;
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
-	player_data dir = player_data(IDLE, RIGHT);
+	player_data dir = player_data(LEFT, RIGHT),
+		action1 = player_data(IDLE, MOVE);
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
 		* current_sprite = &al;
 
 
+
 	auto update_datas = [&] () -> void {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
-		if (key[SDL_SCANCODE_LEFT])
+		if (key[SDL_SCANCODE_LEFT]) {
 			dir.change_current_data(LEFT);
+			action1.change_current_data(MOVE);
 
-		else if (key[SDL_SCANCODE_RIGHT])
+		}
+
+		else if (key[SDL_SCANCODE_RIGHT]) {
 			dir.change_current_data(RIGHT);
+			action1.change_current_data(MOVE);
 
-		else
-			dir.change_current_data(IDLE);
+		} else
+			action1.change_current_data(IDLE);
 
 	};
+
+
 
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
@@ -61,12 +70,29 @@ int main(int argc, char* argv[]) {
 			current_sprite = &ar;
 	};
 
-	auto update_pos = [&] () -> void {
-		if (dir.get_current_data() == LEFT)
-			x -= 5;
 
-		else if (dir.get_current_data() == RIGHT)
-			x += 5;
+
+	auto move_left = [&] () -> void {
+		for (int i = 0; i < 15; ++i)
+			--x;
+
+		current_sprite->change_pos(x, y);
+	};
+
+	auto move_right = [&] () -> void {
+		for (int i = 0; i < 15; ++i)
+			++x;
+
+		current_sprite->change_pos(x, y);
+	};
+
+	auto update_pos = [&] () -> void {
+		if (action1.equals(MOVE))
+			if (dir.equals(LEFT))
+				move_left();
+
+			else
+				move_right();
 
 	};
 
@@ -79,11 +105,10 @@ int main(int argc, char* argv[]) {
 				game_over = true;
 
 		update_datas();
-		update_pos();
 		update_sprites();
+		update_pos();
 
 		win.clear();
-		current_sprite->change_pos(x, y);
 		current_sprite->draw();
 		win.update();
 
