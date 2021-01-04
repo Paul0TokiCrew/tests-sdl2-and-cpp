@@ -12,6 +12,8 @@
 #define PRINT(txt) std::cout << txt;
 #define PRINTLN(txt) std::cout << txt << std::endl;
 
+#define FPS 20
+
 #define IDLE 0
 #define LEFT 1
 #define RIGHT 2
@@ -19,11 +21,15 @@
 
 
 int main(int argc, char* argv[]) {
-	PRINTLN("---- AvoidGator ----")
-	PRINTLN("Try to don't become into an alligator!")
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+	IMG_Init(IMG_INIT_PNG);
+
+
 
 	bool game_over = false;
 	int x = 0, y = 0, w = 64, h = 64;
+	const int delay = 1000 / FPS;
+
 	window win = window("AvoidGator", W, H);
 	player_data dir = player_data(IDLE, RIGHT);
 
@@ -68,6 +74,8 @@ int main(int argc, char* argv[]) {
 		ademir.draw();
 		ademir.advance_x_frame();
 		win.update();
+
+		SDL_Delay(delay);
 
 	}
 
