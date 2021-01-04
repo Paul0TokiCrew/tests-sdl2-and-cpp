@@ -3,6 +3,7 @@
 #include <window.hpp>
 #include <sprite.hpp>
 #include <player_data.hpp>
+#include <character.hpp>
 
 
 
@@ -25,6 +26,7 @@
 #define MOVE 6
 
 
+
 int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	IMG_Init(IMG_INIT_PNG);
@@ -32,7 +34,6 @@ int main(int argc, char* argv[]) {
 
 
 	bool game_over = false;
-	int x = 0, y = 140, w = 64, h = 64;
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
@@ -40,8 +41,8 @@ int main(int argc, char* argv[]) {
 		action1 = player_data(STAND, FALL),
 		action2 = player_data(IDLE, MOVE);
 
-	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
-		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
+	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
+		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		* current_sprite = &al;
 
 
@@ -79,16 +80,14 @@ int main(int argc, char* argv[]) {
 
 	auto move_left = [&] () -> void {
 		for (int i = 0; i < 15; ++i)
-			--x;
+			--character::x;
 
-		current_sprite->change_pos(x, y);
 	};
 
 	auto move_right = [&] () -> void {
 		for (int i = 0; i < 15; ++i)
-			++x;
+			++character::x;
 
-		current_sprite->change_pos(x, y);
 	};
 
 	auto update_pos = [&] () -> void {
@@ -98,7 +97,8 @@ int main(int argc, char* argv[]) {
 
 			else
 				move_right();
-
+	
+		current_sprite->change_pos(character::x, character::y);
 	};
 
 	SDL_Event evn;
