@@ -33,7 +33,10 @@ int main(int argc, char* argv[]) {
 	window win = window("AvoidGator", W, H);
 	player_data dir = player_data(IDLE, RIGHT);
 
-	sprite ademir = sprite(win, "res/sprites/ademir/Ademir Jr..png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1);
+	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
+		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
+		* current_sprite = &al;
+
 
 	auto update_datas = [&] () -> void {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
@@ -47,6 +50,15 @@ int main(int argc, char* argv[]) {
 		else
 			dir.change_current_data(IDLE);
 
+	};
+
+	auto update_sprites = [&] () -> void {
+		current_sprite->advance_x_frame();
+		if (dir.get_current_data() == LEFT)
+			current_sprite = &al;
+
+		else
+			current_sprite = &ar;
 	};
 
 	auto update_pos = [&] () -> void {
@@ -68,11 +80,11 @@ int main(int argc, char* argv[]) {
 
 		update_datas();
 		update_pos();
+		update_sprites();
 
 		win.clear();
-		ademir.change_pos(x, y);
-		ademir.draw();
-		ademir.advance_x_frame();
+		current_sprite->change_pos(x, y);
+		current_sprite->draw();
 		win.update();
 
 		SDL_Delay(delay);
