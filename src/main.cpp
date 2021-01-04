@@ -78,28 +78,18 @@ int main(int argc, char* argv[]) {
 
 
 
-	auto move_left = [&] () -> void {
-		for (int i = 0; i < 15; ++i)
-			--character::x;
-
-	};
-
-	auto move_right = [&] () -> void {
-		for (int i = 0; i < 15; ++i)
-			++character::x;
-
-	};
-
 	auto update_pos = [&] () -> void {
 		if (action2.equals(MOVE))
 			if (dir.equals(LEFT))
-				move_left();
+				character::move_left();
 
 			else
-				move_right();
+				character::move_right();
 	
 		current_sprite->change_pos(character::x, character::y);
 	};
+
+
 
 	SDL_Event evn;
 
