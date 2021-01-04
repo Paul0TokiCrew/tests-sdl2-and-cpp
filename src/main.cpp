@@ -17,8 +17,12 @@
 #define LEFT 0
 #define RIGHT 1
 
-#define IDLE 2
-#define MOVE 3
+#define STAND 2
+#define JUMP 3
+#define FALL 4
+
+#define IDLE 5
+#define MOVE 6
 
 
 int main(int argc, char* argv[]) {
@@ -33,7 +37,8 @@ int main(int argc, char* argv[]) {
 
 	window win = window("AvoidGator", W, H);
 	player_data dir = player_data(LEFT, RIGHT),
-		action1 = player_data(IDLE, MOVE);
+		action1 = player_data(STAND, FALL),
+		action2 = player_data(IDLE, MOVE);
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { x, y, w, h }, 4, 1),
@@ -52,10 +57,10 @@ int main(int argc, char* argv[]) {
 
 		else if (key[SDL_SCANCODE_RIGHT]) {
 			dir.change_current_data(RIGHT);
-			action1.change_current_data(MOVE);
+			action2.change_current_data(MOVE);
 
 		} else
-			action1.change_current_data(IDLE);
+			action2.change_current_data(IDLE);
 
 	};
 
@@ -87,7 +92,7 @@ int main(int argc, char* argv[]) {
 	};
 
 	auto update_pos = [&] () -> void {
-		if (action1.equals(MOVE))
+		if (action2.equals(MOVE))
 			if (dir.equals(LEFT))
 				move_left();
 
