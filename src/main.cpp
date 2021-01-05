@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <window.hpp>
 #include <sprite.hpp>
 #include <player_data.hpp>
@@ -43,6 +44,8 @@ int main(int argc, char* argv[]) {
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
+		awl = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
+		awr = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		* current_sprite = &al;
 
 
@@ -54,9 +57,7 @@ int main(int argc, char* argv[]) {
 			dir.change_current_data(LEFT);
 			action1.change_current_data(MOVE);
 
-		}
-
-		else if (key[SDL_SCANCODE_RIGHT]) {
+		} else if (key[SDL_SCANCODE_RIGHT]) {
 			dir.change_current_data(RIGHT);
 			action2.change_current_data(MOVE);
 
@@ -67,13 +68,21 @@ int main(int argc, char* argv[]) {
 
 
 
+	auto def_sprite_by_dir = [&] (sprite& l, sprite& r) -> sprite* {
+		if (dir.equals(LEFT))
+			return &l;
+
+		return &r;
+	};
+
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
-		if (dir.get_current_data() == LEFT)
-			current_sprite = &al;
+
+		if (action2.equals(MOVE))
+			current_sprite = def_sprite_by_dir(awl, awr);
 
 		else
-			current_sprite = &ar;
+			current_sprite = def_sprite_by_dir(al, ar);
 	};
 
 
@@ -85,7 +94,7 @@ int main(int argc, char* argv[]) {
 
 			else
 				character::move_right();
-	
+
 		current_sprite->change_pos(character::x, character::y);
 	};
 
@@ -111,6 +120,7 @@ int main(int argc, char* argv[]) {
 
 	}
 
+	IMG_Quit();
 	SDL_Quit();
 	return 0;
 }
