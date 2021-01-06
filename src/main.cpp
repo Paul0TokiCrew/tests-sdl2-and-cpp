@@ -16,13 +16,6 @@
 
 #define FPS 20
 
-#define LEFT 0
-#define RIGHT 1
-
-#define STAND 2
-#define JUMP 3
-#define FALL 4
-
 #define IDLE 5
 #define MOVE 6
 
@@ -39,8 +32,7 @@ int main(int argc, char* argv[]) {
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
-	player_data action1 = player_data(STAND, FALL),
-		action2 = player_data(IDLE, MOVE);
+	player_data action2 = player_data(IDLE, MOVE);
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -58,15 +50,15 @@ int main(int argc, char* argv[]) {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
 		if (key[SDL_SCANCODE_SPACE] && jump_count < 10) {
-			action1.change_current_data(JUMP);
+			character::action1.change_current_data(JUMP);
 			++jump_count;
 
 		} else if (jump_count > 0) {
-			action1.change_current_data(FALL);
+			character::action1.change_current_data(FALL);
 			--jump_count;
 
 		} else
-			action1.change_current_data(STAND);
+			character::action1.change_current_data(STAND);
 
 
 
@@ -95,10 +87,10 @@ int main(int argc, char* argv[]) {
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
 
-		if (action1.equals(FALL))
+		if (character::action1.equals(FALL))
 			current_sprite = def_sprite_by_dir(afl, afr);
 
-		else if (action1.equals(JUMP))
+		else if (character::action1.equals(JUMP))
 			current_sprite = def_sprite_by_dir(ajl, ajr);
 
 		else if (action2.equals(MOVE))
@@ -111,10 +103,10 @@ int main(int argc, char* argv[]) {
 
 
 	auto update_pos = [&] () -> void {
-		if (action1.equals(FALL))
+		if (character::action1.equals(FALL))
 			character::move_down();
 
-		else if (action1.equals(JUMP))
+		else if (character::action1.equals(JUMP))
 			character::move_up();
 
 
