@@ -50,12 +50,18 @@ int main(int argc, char* argv[]) {
 		ajr = sprite(win, "res/sprites/ademir/Ademir Jr. Jump Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 2, 1),
 		* current_sprite = &al;
 
-	PRINTLN(SDL_SCANCODE_LEFT)
-
 
 
 	auto update_datas = [&] () -> void {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
+
+		if (key[SDL_SCANCODE_SPACE])
+			action1.change_current_data(JUMP);
+
+		else
+			action1.change_current_data(STAND);
+
+
 
 		if (key[SDL_SCANCODE_LEFT]) {
 			dir.change_current_data(LEFT);
@@ -82,7 +88,10 @@ int main(int argc, char* argv[]) {
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
 
-		if (action2.equals(MOVE))
+		if (action1.equals(JUMP))
+			current_sprite = def_sprite_by_dir(ajl, ajr);
+
+		else if (action2.equals(MOVE))
 			current_sprite = def_sprite_by_dir(awl, awr);
 
 		else
@@ -92,6 +101,9 @@ int main(int argc, char* argv[]) {
 
 
 	auto update_pos = [&] () -> void {
+		if (action1.equals(JUMP))
+			character::move_up();
+
 		if (action2.equals(MOVE))
 			if (dir.equals(LEFT))
 				character::move_left();
