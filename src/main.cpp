@@ -39,8 +39,7 @@ int main(int argc, char* argv[]) {
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
-	player_data dir = player_data(LEFT, RIGHT),
-		action1 = player_data(STAND, FALL),
+	player_data action1 = player_data(STAND, FALL),
 		action2 = player_data(IDLE, MOVE);
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -72,11 +71,11 @@ int main(int argc, char* argv[]) {
 
 
 		if (key[SDL_SCANCODE_LEFT]) {
-			dir.change_current_data(LEFT);
+			character::dir.change_current_data(LEFT);
 			action2.change_current_data(MOVE);
 
 		} else if (key[SDL_SCANCODE_RIGHT]) {
-			dir.change_current_data(RIGHT);
+			character::dir.change_current_data(RIGHT);
 			action2.change_current_data(MOVE);
 
 		} else
@@ -87,7 +86,7 @@ int main(int argc, char* argv[]) {
 
 
 	auto def_sprite_by_dir = [&] (sprite& l, sprite& r) -> sprite* {
-		if (dir.equals(LEFT))
+		if (character::dir.equals(LEFT))
 			return &l;
 
 		return &r;
@@ -121,7 +120,7 @@ int main(int argc, char* argv[]) {
 
 
 		if (action2.equals(MOVE))
-			if (dir.equals(LEFT))
+			if (character::dir.equals(LEFT))
 				character::move_left();
 
 			else
