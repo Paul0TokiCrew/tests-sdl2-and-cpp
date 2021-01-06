@@ -16,9 +16,6 @@
 
 #define FPS 20
 
-#define IDLE 5
-#define MOVE 6
-
 
 
 int main(int argc, char* argv[]) {
@@ -32,7 +29,6 @@ int main(int argc, char* argv[]) {
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
-	player_data action2 = player_data(IDLE, MOVE);
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -64,14 +60,14 @@ int main(int argc, char* argv[]) {
 
 		if (key[SDL_SCANCODE_LEFT]) {
 			character::dir.change_current_data(LEFT);
-			action2.change_current_data(MOVE);
+			character::action2.change_current_data(MOVE);
 
 		} else if (key[SDL_SCANCODE_RIGHT]) {
 			character::dir.change_current_data(RIGHT);
-			action2.change_current_data(MOVE);
+			character::action2.change_current_data(MOVE);
 
 		} else
-			action2.change_current_data(IDLE);
+			character::action2.change_current_data(IDLE);
 
 	};
 
@@ -93,7 +89,7 @@ int main(int argc, char* argv[]) {
 		else if (character::action1.equals(JUMP))
 			current_sprite = def_sprite_by_dir(ajl, ajr);
 
-		else if (action2.equals(MOVE))
+		else if (character::action2.equals(MOVE))
 			current_sprite = def_sprite_by_dir(awl, awr);
 
 		else
@@ -111,7 +107,7 @@ int main(int argc, char* argv[]) {
 
 
 
-		if (action2.equals(MOVE))
+		if (character::action2.equals(MOVE))
 			if (character::dir.equals(LEFT))
 				character::move_left();
 

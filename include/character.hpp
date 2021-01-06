@@ -13,6 +13,9 @@
 #define JUMP 3
 #define FALL 4
 
+#define IDLE 5
+#define MOVE 6
+
 
 
 class character {
@@ -21,8 +24,7 @@ public:
 	~character() { }
 
 	static int x, y, w, h;
-	static player_data dir;
-	static player_data action1;
+	static player_data dir, action1, action2;
 
 	static void move_up();
 	static void move_down();
