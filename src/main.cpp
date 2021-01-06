@@ -35,6 +35,7 @@ int main(int argc, char* argv[]) {
 
 
 	bool game_over = false;
+	int jump_count = 0;
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
@@ -48,6 +49,8 @@ int main(int argc, char* argv[]) {
 		awr = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ajl = sprite(win, "res/sprites/ademir/Ademir Jr. Jump Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 2, 1),
 		ajr = sprite(win, "res/sprites/ademir/Ademir Jr. Jump Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 2, 1),
+		afl = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
+		afr = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
 		* current_sprite = &al;
 
 
@@ -55,10 +58,15 @@ int main(int argc, char* argv[]) {
 	auto update_datas = [&] () -> void {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
-		if (key[SDL_SCANCODE_SPACE])
+		if (key[SDL_SCANCODE_SPACE] && jump_count < 10) {
 			action1.change_current_data(JUMP);
+			++jump_count;
 
-		else
+		} else if (jump_count > 0) {
+			action1.change_current_data(FALL);
+			--jump_count;
+
+		} else
 			action1.change_current_data(STAND);
 
 
@@ -88,7 +96,10 @@ int main(int argc, char* argv[]) {
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
 
-		if (action1.equals(JUMP))
+		if (action1.equals(FALL))
+			current_sprite = def_sprite_by_dir(afl, afr);
+
+		else if (action1.equals(JUMP))
 			current_sprite = def_sprite_by_dir(ajl, ajr);
 
 		else if (action2.equals(MOVE))
@@ -101,8 +112,13 @@ int main(int argc, char* argv[]) {
 
 
 	auto update_pos = [&] () -> void {
-		if (action1.equals(JUMP))
+		if (action1.equals(FALL))
+			character::move_down();
+
+		else if (action1.equals(JUMP))
 			character::move_up();
+
+
 
 		if (action2.equals(MOVE))
 			if (dir.equals(LEFT))
