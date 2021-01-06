@@ -46,28 +46,28 @@ int main(int argc, char* argv[]) {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
 		if (key[SDL_SCANCODE_SPACE] && jump_count < 10) {
-			character::action1.change_current_data(JUMP);
+			character::action1 = JUMP;
 			++jump_count;
 
 		} else if (jump_count > 0) {
-			character::action1.change_current_data(FALL);
+			character::action1 = FALL;
 			--jump_count;
 
 		} else
-			character::action1.change_current_data(STAND);
+			character::action1 = STAND;
 
 
 
 		if (key[SDL_SCANCODE_LEFT]) {
-			character::dir.change_current_data(LEFT);
-			character::action2.change_current_data(MOVE);
+			character::dir = LEFT;
+			character::action2 = MOVE;
 
 		} else if (key[SDL_SCANCODE_RIGHT]) {
-			character::dir.change_current_data(RIGHT);
-			character::action2.change_current_data(MOVE);
+			character::dir = RIGHT;
+			character::action2 = MOVE;
 
 		} else
-			character::action2.change_current_data(IDLE);
+			character::action2 = IDLE;
 
 	};
 
