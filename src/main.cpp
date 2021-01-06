@@ -46,7 +46,11 @@ int main(int argc, char* argv[]) {
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		awl = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		awr = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
+		ajl = sprite(win, "res/sprites/ademir/Ademir Jr. Jump Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 2, 1),
+		ajr = sprite(win, "res/sprites/ademir/Ademir Jr. Jump Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 2, 1),
 		* current_sprite = &al;
+
+	PRINTLN(SDL_SCANCODE_LEFT)
 
 
 
@@ -55,7 +59,7 @@ int main(int argc, char* argv[]) {
 
 		if (key[SDL_SCANCODE_LEFT]) {
 			dir.change_current_data(LEFT);
-			action1.change_current_data(MOVE);
+			action2.change_current_data(MOVE);
 
 		} else if (key[SDL_SCANCODE_RIGHT]) {
 			dir.change_current_data(RIGHT);
