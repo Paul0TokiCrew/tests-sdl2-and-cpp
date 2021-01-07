@@ -5,6 +5,7 @@
 #include <sprite.hpp>
 #include <player_data.hpp>
 #include <character.hpp>
+#include <object.hpp>
 
 
 
@@ -27,7 +28,7 @@ extern void move_left(character* obj);
 
 int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-	IMG_Init(IMG_INIT_PNG);
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 
 
 
@@ -40,6 +41,8 @@ int main(int argc, char* argv[]) {
 	character ademir = character(15, 15),
 		* current_character = &ademir;
 
+	image tmp_ground = image(win, "res/textures/tmp_ground.jpg", { 0, 0, 1280, 720 }, { 0, 0, 0, 0 } );
+
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		awl = sprite(win, "res/sprites/ademir/Ademir Jr. Walk Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -49,6 +52,8 @@ int main(int argc, char* argv[]) {
 		afl = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
 		afr = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
 		* current_sprite = &al;
+
+	object::add_obj( { 0, 140 + 64, W, H - (140 + 64) }, tmp_ground, "collision");
 
 
 
@@ -130,7 +135,24 @@ int main(int argc, char* argv[]) {
 
 
 	auto draw = [&] () -> void {
+		SDL_Rect rec;
+
 		current_sprite->draw();
+
+		for (int i = 0; i < object::textures.size(); ++i) {
+			
+			if (object::textures[i] != nullptr) {
+				rec = { object::textures[i]->get_des_x(), object::textures[i]->get_des_y(), object::textures[i]->get_des_w(), object::textures[i]->get_des_h() };
+				object::textures[i]->change_pos(object::pos[i].first.first, object::pos[i].first.second);
+				object::textures[i]->change_size(object::pos[i].second.first - object::pos[i].first.first, object::pos[i].second.second - object::pos[i].first.second);
+				object::textures[i]->draw();
+				object::textures[i]->change_pos(rec.x, rec.y);
+				object::textures[i]->change_size(rec.w, rec.h);
+
+			}
+
+		}
+
 	};
 
 
@@ -148,6 +170,7 @@ int main(int argc, char* argv[]) {
 		update_pos();
 
 		win.clear();
+		tmp_ground.draw();
 		draw();
 		win.update();
 
