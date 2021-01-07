@@ -18,6 +18,13 @@
 
 
 
+extern void move_up(character* obj);
+extern void move_down(character* obj);
+extern void move_right(character* obj);
+extern void move_left(character* obj);
+
+
+
 int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	IMG_Init(IMG_INIT_PNG);
@@ -29,6 +36,9 @@ int main(int argc, char* argv[]) {
 	const int delay = 1000 / FPS;
 
 	window win = window("AvoidGator", W, H);
+
+	character ademir = character(15, 15),
+		* current_character = &ademir;
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -100,19 +110,19 @@ int main(int argc, char* argv[]) {
 
 	auto update_pos = [&] () -> void {
 		if (character::action1 == FALL)
-			character::move_down();
+			move_down(current_character);
 
 		else if (character::action1 == JUMP)
-			character::move_up();
+			move_up(current_character);
 
 
 
 		if (character::action2 == MOVE)
 			if (character::dir == LEFT)
-				character::move_left();
+				move_left(current_character);
 
 			else
-				character::move_right();
+				move_right(current_character);
 
 		current_sprite->change_pos(character::x, character::y);
 	};

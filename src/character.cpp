@@ -11,30 +11,30 @@ player_data character::dir = player_data(LEFT, RIGHT),
 
 
 
-void character::move_up() {
+void move_up(character* obj) {
 
-	for (int i = 0; i < 15; ++i)
+	for (int i = 0; i < obj->y_speed; ++i)
 		--character::y;
 
 }
 
-void character::move_down() {
+void move_down(character* obj) {
 
-	for (int i = 0; i < 15; ++i)
+	for (int i = 0; i < obj->y_speed; ++i)
 		++character::y;
 
 }
 
-void character::move_right() {
+void move_right(character* obj) {
 
-	for (int i = 0; i < 15; ++i)
+	for (int i = 0; i < obj->x_speed; ++i)
 		++character::x;
 
 }
 
-void character::move_left() {
+void move_left(character* obj) {
 
-	for (int i = 0; i < 15; ++i)
+	for (int i = 0; i < obj->x_speed; ++i)
 		--character::x;
 
 }

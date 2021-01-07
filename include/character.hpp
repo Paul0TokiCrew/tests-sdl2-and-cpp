@@ -19,16 +19,20 @@
 
 
 class character {
+private:
+	const int x_speed, y_speed;
+
 public:
-	character() { }
+	character(const int x_speed, const int y_speed) :
+	x_speed(x_speed), y_speed(y_speed) { }
 	~character() { }
 
 	static int x, y, w, h;
 	static player_data dir, action1, action2;
 
-	static void move_up();
-	static void move_down();
-	static void move_right();
-	static void move_left();
+	friend void move_up(character* obj);
+	friend void move_down(character* obj);
+	friend void move_right(character* obj);
+	friend void move_left(character* obj);
 
 };
