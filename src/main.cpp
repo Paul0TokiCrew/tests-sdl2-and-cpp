@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
 
 
 	auto def_sprite_by_dir = [&] (sprite& l, sprite& r) -> sprite* {
-		if (character::dir.equals(LEFT))
+		if (character::dir == LEFT)
 			return &l;
 
 		return &r;
@@ -83,13 +83,13 @@ int main(int argc, char* argv[]) {
 	auto update_sprites = [&] () -> void {
 		current_sprite->advance_x_frame();
 
-		if (character::action1.equals(FALL))
+		if (character::action1 == FALL)
 			current_sprite = def_sprite_by_dir(afl, afr);
 
-		else if (character::action1.equals(JUMP))
+		else if (character::action1 == JUMP)
 			current_sprite = def_sprite_by_dir(ajl, ajr);
 
-		else if (character::action2.equals(MOVE))
+		else if (character::action2 == MOVE)
 			current_sprite = def_sprite_by_dir(awl, awr);
 
 		else
@@ -99,16 +99,16 @@ int main(int argc, char* argv[]) {
 
 
 	auto update_pos = [&] () -> void {
-		if (character::action1.equals(FALL))
+		if (character::action1 == FALL)
 			character::move_down();
 
-		else if (character::action1.equals(JUMP))
+		else if (character::action1 == JUMP)
 			character::move_up();
 
 
 
-		if (character::action2.equals(MOVE))
-			if (character::dir.equals(LEFT))
+		if (character::action2 == MOVE)
+			if (character::dir == LEFT)
 				character::move_left();
 
 			else
