@@ -119,6 +119,12 @@ int main(int argc, char* argv[]) {
 
 
 
+	auto draw = [&] () -> void {
+		current_sprite->draw();
+	};
+
+
+
 	SDL_Event evn;
 
 	while (!game_over) {
@@ -132,7 +138,7 @@ int main(int argc, char* argv[]) {
 		update_pos();
 
 		win.clear();
-		current_sprite->draw();
+		draw();
 		win.update();
 
 		SDL_Delay(delay);
