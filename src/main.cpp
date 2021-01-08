@@ -17,6 +17,11 @@
 
 #define FPS 20
 
+#define ADD_BORDERS object::add_obj( { 0, 0, W, 0 }, "collision" ); \
+	object::add_obj( { 0, 0, 0, H }, "collision" ); \
+	object::add_obj( { W, 0, 0, H }, "collision" ); \
+	object::add_obj( { 0, H, W, 0 }, "collision" );
+
 
 
 extern void move_up(character* obj);
@@ -53,6 +58,7 @@ int main(int argc, char* argv[]) {
 		afr = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
 		* current_sprite = &al;
 
+	ADD_BORDERS
 	object::add_obj( { 0, 140 + 64, W, H - (140 + 64) }, tmp_ground, "collision");
 
 
