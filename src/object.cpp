@@ -37,11 +37,11 @@ void object::del_obj(const int index) {
 	object::ids.erase(object::ids.begin() + index);
 }
 
-void object::check_up_collision(SDL_Rect rec) {
+bool object::check_up_collision(SDL_Rect rec) {
 	auto i = object::pos.begin();
 	auto j = object::ids.begin();
 
-	for (; i != object::ids.end() && j != object::pos.end(); ++i, ++j)
+	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
 			rec.y == i->second.second)
 			return true;
@@ -49,11 +49,11 @@ void object::check_up_collision(SDL_Rect rec) {
 	return false;
 }
 
-void object::check_down_collision(SDL_Rect rec) {
+bool object::check_down_collision(SDL_Rect rec) {
 	auto i = object::pos.begin();
 	auto j = object::ids.begin();
 
-	for (; i != object::ids.end() && j != object::pos.end(); ++i, ++j)
+	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
 			rec.y + rec.h == i->first.second)
 			return true;
@@ -61,11 +61,11 @@ void object::check_down_collision(SDL_Rect rec) {
 	return false;
 }
 
-void object::check_right_collision(SDL_Rect rec) {
+bool object::check_right_collision(SDL_Rect rec) {
 	auto i = object::pos.begin();
 	auto j = object::ids.begin();
 
-	for (; i != object::ids.end() && j != object::pos.end(); ++i, ++j)
+	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
 			rec.x == i->second.first)
 			return true;
@@ -73,11 +73,11 @@ void object::check_right_collision(SDL_Rect rec) {
 	return false;
 }
 
-void object::check_left_collision(SDL_Rect rec) {
+bool object::check_left_collision(SDL_Rect rec) {
 	auto i = object::pos.begin();
 	auto j = object::ids.begin();
 
-	for (; i != object::ids.end() && j != object::pos.end(); ++i, ++j)
+	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
 			rec.x + rec.w == i->first.first)
 			return true;
