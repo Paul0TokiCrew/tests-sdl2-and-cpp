@@ -42,7 +42,7 @@ bool object::check_up_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (*j == "collision" &&
+		if (!strcmp(*j, "collision") &&
 			rec.y == i->second.second)
 			return true;
 
@@ -54,7 +54,7 @@ bool object::check_down_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (*j == "collision" &&
+		if (!strcmp(*j, "collision") &&
 			rec.y + rec.h == i->first.second)
 			return true;
 
@@ -66,7 +66,7 @@ bool object::check_right_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (*j == "collision" &&
+		if (!strcmp(*j, "collision") &&
 			rec.x + rec.w == i->first.first)
 			return true;
 
@@ -78,7 +78,7 @@ bool object::check_left_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (*j == "collision" &&
+		if (!strcmp(*j, "collision") &&
 			rec.x == i->second.first)
 			return true;
 
