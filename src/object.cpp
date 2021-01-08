@@ -67,7 +67,7 @@ bool object::check_right_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
-			rec.x == i->second.first)
+			rec.x + rec.w == i->first.first)
 			return true;
 
 	return false;
@@ -79,7 +79,7 @@ bool object::check_left_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (*j == "collision" &&
-			rec.x + rec.w == i->first.first)
+			rec.x == i->second.first)
 			return true;
 
 	return false;

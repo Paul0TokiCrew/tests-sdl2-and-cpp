@@ -14,27 +14,43 @@ player_data character::dir = player_data(LEFT, RIGHT),
 void move_up(character* obj) {
 
 	for (int i = 0; i < obj->y_speed; ++i)
-		--character::y;
+		if (object::check_up_collision(CHARACTER_REC))
+			break;
+
+		else
+			--character::y;
 
 }
 
 void move_down(character* obj) {
 
 	for (int i = 0; i < obj->y_speed; ++i)
-		++character::y;
+		if (object::check_down_collision(CHARACTER_REC))
+			break;
+
+		else
+			++character::y;
 
 }
 
 void move_right(character* obj) {
 
 	for (int i = 0; i < obj->x_speed; ++i)
-		++character::x;
+		if (object::check_right_collision(CHARACTER_REC))
+			break;
+
+		else
+			++character::x;
 
 }
 
 void move_left(character* obj) {
 
 	for (int i = 0; i < obj->x_speed; ++i)
-		--character::x;
+		if (object::check_left_collision(CHARACTER_REC))
+			break;
+
+		else
+			--character::x;
 
 }

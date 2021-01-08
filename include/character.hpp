@@ -3,6 +3,7 @@
 
 
 #include <player_data.hpp>
+#include <object.hpp>
 
 
 
@@ -15,6 +16,8 @@
 
 #define IDLE 5
 #define MOVE 6
+
+#define CHARACTER_REC { character::x, character::y, character::w, character::h }
 
 
 
