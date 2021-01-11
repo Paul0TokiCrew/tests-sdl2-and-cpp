@@ -59,23 +59,28 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	ADD_BORDERS
-	object::add_obj( { 0, 140 + 64, W, H - (140 + 64) }, tmp_ground, "collision");
+	object::add_obj( { 0, H - 120, W - 200, 120 }, tmp_ground, "collision");
 
 
 
 	auto update_datas = [&] () -> void {
 		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
-		if (key[SDL_SCANCODE_SPACE] && jump_count < 10) {
+		if (key[SDL_SCANCODE_SPACE] && character::action1 != FALL && jump_count < 10) {
 			character::action1 = JUMP;
 			++jump_count;
 
-		} else if (jump_count > 0) {
+		} else if (!object::check_down_collision(CHARACTER_REC)) {
 			character::action1 = FALL;
-			--jump_count;
 
-		} else
+			if (jump_count)
+				--jump_count;
+
+		} else {
 			character::action1 = STAND;
+			jump_count = 0;
+
+		}
 
 
 

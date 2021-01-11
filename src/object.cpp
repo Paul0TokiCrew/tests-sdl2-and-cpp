@@ -43,7 +43,8 @@ bool object::check_up_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (!strcmp(*j, "collision") &&
-			rec.y == i->second.second)
+			rec.y == i->second.second &&
+			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
 
 	return false;
@@ -55,7 +56,8 @@ bool object::check_down_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (!strcmp(*j, "collision") &&
-			rec.y + rec.h == i->first.second)
+			rec.y + rec.h == i->first.second &&
+			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
 
 	return false;
@@ -67,7 +69,8 @@ bool object::check_right_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (!strcmp(*j, "collision") &&
-			rec.x + rec.w == i->first.first)
+			rec.x + rec.w == i->first.first &&
+			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
 
 	return false;
@@ -79,7 +82,8 @@ bool object::check_left_collision(SDL_Rect rec) {
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
 		if (!strcmp(*j, "collision") &&
-			rec.x == i->second.first)
+			rec.x == i->second.first &&
+			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
 
 	return false;
