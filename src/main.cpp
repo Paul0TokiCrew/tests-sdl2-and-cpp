@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 	character ademir = character(15, 15),
 		* current_character = &ademir;
 
-	image tmp_ground = image(win, "res/textures/tmp_ground.jpg", { 0, 0, 1280, 720 }, { 0, 0, 0, 0 } );
+	image ground = image(win, "res/textures/ground.png", { 0, 0, 16, 16 }, { 0, 0, 0, 0 } );
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	ADD_BORDERS
-	object::add_obj( { 0, H - 120, W - 200, 120 }, tmp_ground, "collision");
+	object::add_obj( { 0, H - 64, 64, 64 }, ground, "collision");
 
 
 
@@ -181,7 +181,6 @@ int main(int argc, char* argv[]) {
 		update_pos();
 
 		win.clear();
-		tmp_ground.draw();
 		draw();
 		win.update();
 
