@@ -191,7 +191,7 @@ int main(int argc, char* argv[]) {
 		update_sprites();
 		update_pos();
 
-		win.clear();
+		win.clear(10, 40, 230);
 		draw();
 		win.update();
 
