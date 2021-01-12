@@ -59,7 +59,18 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	ADD_BORDERS
-	object::add_obj( { 0, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 0, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 1, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 2, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 3, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 4, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 5, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 6, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 7, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 8, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 9, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 10, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 11, H - 64, 64, 64 }, ground, "collision");
 
 
 
