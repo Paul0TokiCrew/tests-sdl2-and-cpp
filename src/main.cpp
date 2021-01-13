@@ -17,10 +17,10 @@
 
 #define FPS 20
 
-#define ADD_BORDERS object::add_obj( { 0, 0, W, 0 }, "collision" ); \
-	object::add_obj( { 0, 0, 0, H }, "collision" ); \
-	object::add_obj( { W, 0, 0, H }, "collision" ); \
-	object::add_obj( { 0, H, W, 0 }, "collision" );
+#define ADD_BORDERS object::add_obj( { 0, 0, W, 0 }, "u" ); \
+	object::add_obj( { 0, 0, 0, H }, "l" ); \
+	object::add_obj( { W, 0, 0, H }, "r" ); \
+	object::add_obj( { 0, H, W, 0 }, "d" );
 
 
 
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 	int jump_count = 0;
 	const int delay = 1000 / FPS;
 
-	window win = window("AvoidGator", W, H);
+	window win = window("Parkour Quest", W, H);
 
 	character ademir = character(15, 15),
 		* current_character = &ademir;
@@ -59,18 +59,18 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	ADD_BORDERS
-	object::add_obj( { 64 * 0, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 1, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 2, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 3, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 4, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 5, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 6, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 7, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 8, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 9, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 10, H - 64, 64, 64 }, ground, "collision");
-	object::add_obj( { 64 * 11, H - 64, 64, 64 }, ground, "collision");
+	object::add_obj( { 64 * 0, H - 64 * 2, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 1, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 2, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 3, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 4, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 5, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 6, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 7, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 8, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 9, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 10, H - 64, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 11, H - 64, 64, 64 }, ground, "d");
 
 
 
@@ -159,8 +159,6 @@ int main(int argc, char* argv[]) {
 	auto draw = [&] () -> void {
 		SDL_Rect rec;
 
-		current_sprite->draw();
-
 		for (int i = 0; i < object::textures.size(); ++i) {
 			
 			if (object::textures[i] != nullptr) {
@@ -175,6 +173,7 @@ int main(int argc, char* argv[]) {
 
 		}
 
+		current_sprite->draw();
 	};
 
 

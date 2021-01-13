@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <vector>
 #include <image.hpp>
 #include <object.hpp>
@@ -42,7 +43,7 @@ bool object::check_up_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (!strcmp(*j, "collision") &&
+		if (strchr(*j, 'u') != nullptr &&
 			rec.y == i->second.second &&
 			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
@@ -55,7 +56,7 @@ bool object::check_down_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (!strcmp(*j, "collision") &&
+		if (strchr(*j, 'd') != nullptr &&
 			rec.y + rec.h == i->first.second &&
 			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
@@ -68,7 +69,7 @@ bool object::check_right_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (!strcmp(*j, "collision") &&
+		if (strchr(*j, 'r') != nullptr &&
 			rec.x + rec.w == i->first.first &&
 			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
@@ -81,7 +82,7 @@ bool object::check_left_collision(SDL_Rect rec) {
 	auto j = object::ids.begin();
 
 	for (; i != object::pos.end() && j != object::ids.end(); ++i, ++j)
-		if (!strcmp(*j, "collision") &&
+		if (strchr(*j, 'l') != nullptr &&
 			rec.x == i->second.first &&
 			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
