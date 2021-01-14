@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	ADD_BORDERS
-	object::add_obj( { 64 * 0, H - 64 * 2, 64, 64 }, ground, "d");
+	object::add_obj( { 64 * 0, H - 64, 64, 64 }, ground, "d");
 	object::add_obj( { 64 * 1, H - 64, 64, 64 }, ground, "d");
 	object::add_obj( { 64 * 2, H - 64, 64, 64 }, ground, "d");
 	object::add_obj( { 64 * 3, H - 64, 64, 64 }, ground, "d");
