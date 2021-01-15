@@ -23,11 +23,12 @@
 
 class character {
 private:
+	object_manager& lvl;
 	const int x_speed, y_speed;
 
 public:
-	character(const int x_speed, const int y_speed) :
-	x_speed(x_speed), y_speed(y_speed) { }
+	character(const int x_speed, const int y_speed, object_manager& lvl) :
+	x_speed(x_speed), y_speed(y_speed), lvl(lvl) { }
 	~character() { }
 
 	static int x, y, w, h;

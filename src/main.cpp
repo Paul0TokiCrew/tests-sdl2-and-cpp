@@ -17,11 +17,6 @@
 
 #define FPS 20
 
-#define ADD_BORDERS object::add_obj( { 0, 0, W, 0 }, "u" ); \
-	object::add_obj( { 0, 0, 0, H }, "l" ); \
-	object::add_obj( { W, 0, 0, H }, "r" ); \
-	object::add_obj( { 0, H, W, 0 }, "d" );
-
 
 
 extern void move_up(character* obj);
@@ -43,7 +38,9 @@ int main(int argc, char* argv[]) {
 
 	window win = window("Parkour Quest", W, H);
 
-	character ademir = character(15, 15),
+	object_manager obj_man = object_manager();
+
+	character ademir = character(15, 15, obj_man),
 		* current_character = &ademir;
 
 	image ground = image(win, "res/textures/ground.png", { 0, 0, 16, 16 }, { 0, 0, 0, 0 } );
@@ -58,19 +55,7 @@ int main(int argc, char* argv[]) {
 		afr = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 3, 1),
 		* current_sprite = &al;
 
-	ADD_BORDERS
-	object::add_obj( { 64 * 0, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 1, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 2, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 3, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 4, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 5, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 6, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 7, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 8, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 9, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 10, H - 64, 64, 64 }, ground, "d");
-	object::add_obj( { 64 * 11, H - 64, 64, 64 }, ground, "d");
+	obj_man.add_obj( { 64 * 0, H - 64, W, 64 }, "d");
 
 
 
@@ -81,7 +66,7 @@ int main(int argc, char* argv[]) {
 			character::action1 = JUMP;
 			++jump_count;
 
-		} else if (!object::check_down_collision(CHARACTER_REC)) {
+		} else if (!obj_man.check_down_collision(CHARACTER_REC)) {
 			character::action1 = FALL;
 
 			if (jump_count)
@@ -158,20 +143,6 @@ int main(int argc, char* argv[]) {
 
 	auto draw = [&] () -> void {
 		SDL_Rect rec;
-
-		for (int i = 0; i < object::textures.size(); ++i) {
-			
-			if (object::textures[i] != nullptr) {
-				rec = { object::textures[i]->get_des_x(), object::textures[i]->get_des_y(), object::textures[i]->get_des_w(), object::textures[i]->get_des_h() };
-				object::textures[i]->change_pos(object::pos[i].first.first, object::pos[i].first.second);
-				object::textures[i]->change_size(object::pos[i].second.first - object::pos[i].first.first, object::pos[i].second.second - object::pos[i].first.second);
-				object::textures[i]->draw();
-				object::textures[i]->change_pos(rec.x, rec.y);
-				object::textures[i]->change_size(rec.w, rec.h);
-
-			}
-
-		}
 
 		current_sprite->draw();
 	};
