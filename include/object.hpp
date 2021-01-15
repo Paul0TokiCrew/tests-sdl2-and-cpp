@@ -23,12 +23,12 @@ public:
 	obj_counter(0) { }
 	~object_manager() { }
 
-	bool check_up_collision(SDL_Rect rec);
-	bool check_down_collision(SDL_Rect rec);
-	bool check_right_collision(SDL_Rect rec);
-	bool check_left_collision(SDL_Rect rec);
-
 	int add_obj(SDL_Rect rec, const char* collision_dir);
 	void del_obj(const int index);
+
+	bool check_up_collision(SDL_Rect rec) const;
+	bool check_down_collision(SDL_Rect rec) const;
+	bool check_right_collision(SDL_Rect rec) const;
+	bool check_left_collision(SDL_Rect rec) const;
 
 };

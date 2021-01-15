@@ -23,7 +23,7 @@ void object_manager::del_obj(const int index) {
 	this->collisions.erase(this->collisions.begin() + index);
 }
 
-bool object_manager::check_up_collision(SDL_Rect rec) {
+bool object_manager::check_up_collision(SDL_Rect rec) const {
 	auto i = this->pos.begin();
 	auto j = this->collisions.begin();
 
@@ -36,7 +36,7 @@ bool object_manager::check_up_collision(SDL_Rect rec) {
 	return false;
 }
 
-bool object_manager::check_down_collision(SDL_Rect rec) {
+bool object_manager::check_down_collision(SDL_Rect rec) const {
 	auto i = this->pos.begin();
 	auto j = this->collisions.begin();
 
@@ -49,7 +49,7 @@ bool object_manager::check_down_collision(SDL_Rect rec) {
 	return false;
 }
 
-bool object_manager::check_right_collision(SDL_Rect rec) {
+bool object_manager::check_right_collision(SDL_Rect rec) const {
 	auto i = this->pos.begin();
 	auto j = this->collisions.begin();
 
@@ -62,7 +62,7 @@ bool object_manager::check_right_collision(SDL_Rect rec) {
 	return false;
 }
 
-bool object_manager::check_left_collision(SDL_Rect rec) {
+bool object_manager::check_left_collision(SDL_Rect rec) const {
 	auto i = this->pos.begin();
 	auto j = this->collisions.begin();
 
