@@ -40,10 +40,11 @@ int main(int argc, char* argv[]) {
 
 	object_manager obj_man = object_manager();
 
+	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 16, 130 * 16 } );
+
 	character ademir = character(15, 15, obj_man),
 		* current_character = &ademir;
 
-	image ground = image(win, "res/textures/ground.png", { 0, 0, 16, 16 }, { 0, 0, 0, 0 } );
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
 		ar = sprite(win, "res/sprites/ademir/Ademir Jr. Right.png", { 0, 0, 20, 20 }, { character::x, character::y, character::w, character::h }, 4, 1),
@@ -129,12 +130,13 @@ int main(int argc, char* argv[]) {
 
 
 
-		if (character::action2 == MOVE)
+		if (character::action2 == MOVE) {
 			if (character::dir == LEFT)
 				move_left(current_character);
 
 			else
 				move_right(current_character);
+		}
 
 		current_sprite->change_pos(character::x, character::y);
 	};
@@ -142,8 +144,7 @@ int main(int argc, char* argv[]) {
 
 
 	auto draw = [&] () -> void {
-		SDL_Rect rec;
-
+		lvl_bg.draw();
 		current_sprite->draw();
 	};
 

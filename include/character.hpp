@@ -23,8 +23,9 @@
 
 class character {
 private:
+	const int x_speed;
+	const int y_speed;
 	object_manager& lvl;
-	const int x_speed, y_speed;
 
 public:
 	character(const int x_speed, const int y_speed, object_manager& lvl) :
