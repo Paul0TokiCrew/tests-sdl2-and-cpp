@@ -136,6 +136,7 @@ int main(int argc, char* argv[]) {
 
 			else
 				move_right(current_character);
+
 		}
 
 		current_sprite->change_pos(character::x, character::y);
@@ -144,8 +145,18 @@ int main(int argc, char* argv[]) {
 
 
 	auto draw = [&] () -> void {
+		SDL_Rect rec;
+		rec = CHARACTER_REC;
+
+		if (character::x >= W / 2 - character::w) {
+			lvl_bg.change_pos(-(character::x - W / 2), lvl_bg.get_src_y());
+			current_sprite->change_pos(W / 2 - character::w, character::y);
+
+		}
+
 		lvl_bg.draw();
 		current_sprite->draw();
+		current_sprite->change_pos(rec.x, rec.y);
 	};
 
 
@@ -157,6 +168,8 @@ int main(int argc, char* argv[]) {
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				game_over = true;
+
+		PRINTLN(character::x)
 
 		update_datas();
 		update_sprites();
