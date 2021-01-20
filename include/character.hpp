@@ -2,6 +2,7 @@
 
 
 
+#include <SDL2/SDL.h>
 #include <player_data.hpp>
 #include <object.hpp>
 
@@ -32,8 +33,11 @@ public:
 	x_speed(x_speed), y_speed(y_speed), lvl(lvl) { }
 	~character() { }
 
-	static int x, y, w, h;
+	static int x, y, w, h,
+		jump_count;
 	static player_data dir, action1, action2;
+
+	static void update_datas(object_manager& obj_man);
 
 	friend void move_up(character* obj);
 	friend void move_down(character* obj);

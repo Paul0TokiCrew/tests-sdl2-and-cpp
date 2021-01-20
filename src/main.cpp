@@ -33,7 +33,6 @@ int main(int argc, char* argv[]) {
 
 
 	bool game_over = false;
-	int jump_count = 0;
 	const int delay = 1000 / FPS;
 
 	window win = window("Parkour Quest", W, H);
@@ -55,43 +54,6 @@ int main(int argc, char* argv[]) {
 		* current_sprite = &al;
 
 	obj_man.add_obj( { 0, lvl_bg.get_des_h(), lvl_bg.get_des_w(), 64 }, "d");
-	obj_man.add_obj( { 200, H - 64, 10, 64 }, "rl" );
-
-
-
-	auto update_datas = [&] () -> void {
-		const Uint8* key = SDL_GetKeyboardState(nullptr);
-
-		if (key[SDL_SCANCODE_SPACE] && character::action1 != FALL && jump_count < 10) {
-			character::action1 = JUMP;
-			++jump_count;
-
-		} else if (!obj_man.check_down_collision(CHARACTER_REC)) {
-			character::action1 = FALL;
-
-			if (jump_count)
-				--jump_count;
-
-		} else {
-			character::action1 = STAND;
-			jump_count = 0;
-
-		}
-
-
-
-		if (key[SDL_SCANCODE_LEFT]) {
-			character::dir = LEFT;
-			character::action2 = MOVE;
-
-		} else if (key[SDL_SCANCODE_RIGHT]) {
-			character::dir = RIGHT;
-			character::action2 = MOVE;
-
-		} else
-			character::action2 = IDLE;
-
-	};
 
 
 
@@ -170,7 +132,7 @@ int main(int argc, char* argv[]) {
 
 		PRINTLN(character::x)
 
-		update_datas();
+		character::update_datas(obj_man);
 		update_sprites();
 		update_pos();
 
