@@ -111,13 +111,13 @@ int main(int argc, char* argv[]) {
 
 		if (character::x >= W / 2 - character::w) {
 			lvl_bg.change_pos(-(character::x - W / 2 + character::w), lvl_bg.get_des_y());
-			current_sprite->change_pos(W / 2 - character::w, character::y);
+			current_sprite->change_pos(W / 2 - character::w, current_sprite->get_des_y());
 
 		}
 
 		if (character::y >= H / 2 - character::h) {
 			lvl_bg.change_pos(lvl_bg.get_des_x(), -(character::y - H / 2 + character::h));
-			current_sprite->change_pos(character::x, H / 2 - character::h);
+			current_sprite->change_pos(current_sprite->get_des_x(), H / 2 - character::h);
 
 		}
 
@@ -137,8 +137,6 @@ int main(int argc, char* argv[]) {
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				game_over = true;
-
-		PRINTLN(character::y)
 
 		character::update_datas(obj_man);
 		update_sprites();
