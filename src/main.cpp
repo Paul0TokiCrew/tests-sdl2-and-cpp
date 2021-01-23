@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 	window win = window("Parkour Quest", W, H);
 
 	object_manager obj_man = object_manager();
-	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 12, H } );
+	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 12, H} );
 
 	character ademir = character(15, 15, obj_man),
 		* current_character = &ademir;
@@ -110,10 +110,18 @@ int main(int argc, char* argv[]) {
 		rec = CHARACTER_REC;
 
 		if (character::x >= W / 2 - character::w) {
-			lvl_bg.change_pos(-(character::x - W / 2 + character::w), lvl_bg.get_src_y());
+			lvl_bg.change_pos(-(character::x - W / 2 + character::w), lvl_bg.get_des_y());
 			current_sprite->change_pos(W / 2 - character::w, character::y);
 
 		}
+
+		if (character::y >= H / 2 - character::h) {
+			lvl_bg.change_pos(lvl_bg.get_des_x(), -(character::y - H / 2 + character::h));
+			current_sprite->change_pos(character::x, H / 2 - character::h);
+
+		}
+
+
 
 		lvl_bg.draw();
 		current_sprite->draw();
@@ -130,7 +138,7 @@ int main(int argc, char* argv[]) {
 			if (evn.type == SDL_QUIT)
 				game_over = true;
 
-		PRINTLN(character::x)
+		PRINTLN(character::y)
 
 		character::update_datas(obj_man);
 		update_sprites();
