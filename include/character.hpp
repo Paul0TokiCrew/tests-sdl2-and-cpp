@@ -37,8 +37,6 @@ public:
 		jump_count;
 	static player_data dir, action1, action2;
 
-	static void update_datas(object_manager& obj_man);
-
 	friend void move_up(character* obj);
 	friend void move_down(character* obj);
 	friend void move_right(character* obj);

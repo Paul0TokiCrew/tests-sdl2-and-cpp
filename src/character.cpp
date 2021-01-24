@@ -1,4 +1,3 @@
-#include <SDL2/SDL.h>
 #include <character.hpp>
 
 
@@ -12,39 +11,6 @@ player_data character::dir = player_data(LEFT, RIGHT),
 	character::action2 = player_data(IDLE, MOVE);
 
 
-
-void character::update_datas(object_manager& obj_man) {
-	const Uint8* key = SDL_GetKeyboardState(nullptr);
-
-	if (key[SDL_SCANCODE_SPACE] && character::action1 != FALL && jump_count < 10) {
-		character::action1 = JUMP;
-		++character::jump_count;
-
-	} else if (!obj_man.check_down_collision(CHARACTER_REC)) {
-		character::action1 = FALL;
-
-		if (jump_count)
-			--character::jump_count;
-
-	} else {
-		character::action1 = STAND;
-		character::jump_count = 0;
-
-	}
-
-
-
-	if (key[SDL_SCANCODE_LEFT]) {
-		character::dir = LEFT;
-		character::action2 = MOVE;
-
-	} else if (key[SDL_SCANCODE_RIGHT]) {
-		character::dir = RIGHT;
-		character::action2 = MOVE;
-
-	} else
-		character::action2 = IDLE;
-}
 
 void move_up(character* obj) {
 
