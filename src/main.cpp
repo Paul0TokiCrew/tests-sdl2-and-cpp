@@ -30,7 +30,7 @@ BEGIN(Parkour Quest)
 		afr = sprite(win, "res/sprites/ademir/Ademir Jr. Fall Right.png", { 0, 0, 20, 20 }, CHARACTER_REC, 3, 1);
 	current_sprite = &al;
 
-	obj_man.add_obj( { 0, lvl_bg.get_des_h(), lvl_bg.get_des_w(), 64 }, "d");
+	obj_man.add_obj( { 0, lvl_bg.get_des_h(), lvl_bg.get_des_w(), 64 }, "dc");
 
 
 

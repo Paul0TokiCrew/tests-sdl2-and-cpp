@@ -28,7 +28,7 @@ bool object_manager::check_up_collision(SDL_Rect rec) const {
 	auto j = this->collisions.begin();
 
 	for (; i != this->pos.end() && j != this->collisions.end(); ++i, ++j)
-		if (strchr(*j, 'u') != nullptr &&
+		if (strstr(*j, "uc") != nullptr &&
 			rec.y == i->second.second &&
 			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
@@ -41,7 +41,7 @@ bool object_manager::check_down_collision(SDL_Rect rec) const {
 	auto j = this->collisions.begin();
 
 	for (; i != this->pos.end() && j != this->collisions.end(); ++i, ++j)
-		if (strchr(*j, 'd') != nullptr &&
+		if (strstr(*j, "dc") != nullptr &&
 			rec.y + rec.h == i->first.second &&
 			(rec.x < i->second.first && rec.x + rec.w > i->first.first) )
 			return true;
@@ -54,7 +54,7 @@ bool object_manager::check_right_collision(SDL_Rect rec) const {
 	auto j = this->collisions.begin();
 
 	for (; i != this->pos.end() && j != this->collisions.end(); ++i, ++j)
-		if (strchr(*j, 'r') != nullptr &&
+		if (strstr(*j, "rc") != nullptr &&
 			rec.x + rec.w == i->first.first &&
 			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
@@ -67,7 +67,7 @@ bool object_manager::check_left_collision(SDL_Rect rec) const {
 	auto j = this->collisions.begin();
 
 	for (; i != this->pos.end() && j != this->collisions.end(); ++i, ++j)
-		if (strchr(*j, 'l') != nullptr &&
+		if (strstr(*j, "lc") != nullptr &&
 			rec.x == i->second.first &&
 			(rec.y < i->second.second && rec.y + rec.w > i->first.second) )
 			return true;
