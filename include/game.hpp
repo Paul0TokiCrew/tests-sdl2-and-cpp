@@ -18,17 +18,17 @@
 
 #define FPS 20
 
-#define BEGIN int main(int argc, char* argv[]) {	\
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);		\
-	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);			\
-													\
-	bool game_over = false;							\
-	const int delay = 1000 / FPS;					\
-													\
-	window win = window("Parkour Quest", W, H);		\
-	object_manager* current_obj_man = nullptr;		\
-	image* current_lvl_bg = nullptr;				\
-	character* current_character = nullptr;			\
+#define BEGIN(win_name) int main(int argc, char* argv[]) {	\
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);				\
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);					\
+															\
+	bool game_over = false;									\
+	const int delay = 1000 / FPS;							\
+															\
+	window win = window(#win_name, W, H);					\
+	object_manager* current_obj_man = nullptr;				\
+	image* current_lvl_bg = nullptr;						\
+	character* current_character = nullptr;					\
 	sprite* current_sprite = nullptr;
 
 #define END IMG_Quit();	\

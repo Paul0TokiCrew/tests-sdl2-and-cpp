@@ -9,7 +9,7 @@ extern void move_left(character* obj);
 
 
 
-BEGIN
+BEGIN(Parkour Quest)
 
 	object_manager obj_man = object_manager();
 	current_obj_man = &obj_man;
