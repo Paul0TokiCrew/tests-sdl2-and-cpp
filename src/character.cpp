@@ -2,8 +2,8 @@
 
 
 
-int character::x = 0, character::y = 140,
-	character::w = 64, character::h = 64,
+int character::x = 0, character::y = 0,
+	character::w = 80, character::h = 80,
 	character::jump_count = 0;
 
 player_data character::dir = player_data(LEFT, RIGHT),

@@ -14,7 +14,7 @@ BEGIN
 	object_manager obj_man = object_manager();
 	current_obj_man = &obj_man;
 
-	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 12, H} );
+	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 4, 130 * 4 } );
 	current_lvl_bg = &lvl_bg;
 
 	character ademir = character(15, 15, obj_man);
