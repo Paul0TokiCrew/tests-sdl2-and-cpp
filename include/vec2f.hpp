@@ -23,6 +23,11 @@ public:
 	float get_length();
 	float get_length_sqr();
 
+	entity operator+(const entity other);
+	entity operator-(const entity other);
+	entity operator*(const entity other);
+	entity operator/(const entity other);
+
 	friend std::ostream& operator<<(std::ostream& os, const entity& ent);
 	friend std::wostream& operator<<(std::wostream& wos, const entity& ent);
 
