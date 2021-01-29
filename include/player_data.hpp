@@ -12,9 +12,9 @@ private:
 	const int min, max;
 
 public:
-	player_data(const int min, const int max) :
+	constexpr player_data(const int min, const int max) :
 	current_data(min), min(min), max(max) { }
-	player_data(const int data, const int min, const int max) :
+	constexpr player_data(const int data, const int min, const int max) :
 	current_data(data), min(min), max(max) { }
 	~player_data() { }
 

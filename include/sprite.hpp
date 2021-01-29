@@ -15,7 +15,7 @@ private:
 	const int y_lim;
 
 public:
-	sprite(window& win, const char* path, SDL_Rect src, SDL_Rect des, const int x_lim, const int y_lim) :
+	constexpr sprite(window& win, const char* path, SDL_Rect src, SDL_Rect des, const int x_lim, const int y_lim) :
 	image(win, path, src, des), x_lim(x_lim - 1), y_lim(y_lim - 1) { }
 	~sprite() { }
 

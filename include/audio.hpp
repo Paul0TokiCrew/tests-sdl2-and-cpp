@@ -11,7 +11,7 @@ private:
 	Mix_Music* aud;
 
 public:
-	audio(const char* file) :
+	constexpr audio(const char* file) :
 	aud(nullptr) {
 		this->aud = Mix_LoadMUS(file);
 	}
