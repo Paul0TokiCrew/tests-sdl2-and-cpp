@@ -12,8 +12,8 @@ public:
 	vec2f() { }
 	constexpr vec2f(const float x, const float y) :
 	x(x), y(y) { }
-	constexpr vec2f(const entity& ent) :
-	x(ent.x), y(ent.y) { }
+	constexpr vec2f(const vec2f& vec) :
+	x(vec.x), y(vec.y) { }
 	~vec2f() { }
 
 	float x, y;
@@ -23,12 +23,12 @@ public:
 	float get_length();
 	float get_length_sqr();
 
-	entity operator+(const entity other);
-	entity operator-(const entity other);
-	entity operator*(const entity other);
-	entity operator/(const entity other);
+	vec2f operator+(const vec2f other);
+	vec2f operator-(const vec2f other);
+	vec2f operator*(const vec2f other);
+	vec2f operator/(const vec2f other);
 
-	friend std::ostream& operator<<(std::ostream& os, const entity& ent);
-	friend std::wostream& operator<<(std::wostream& wos, const entity& ent);
+	friend std::ostream& operator<<(std::ostream& os, const vec2f vec);
+	friend std::wostream& operator<<(std::wostream& wos, const vec2f vec);
 
 };

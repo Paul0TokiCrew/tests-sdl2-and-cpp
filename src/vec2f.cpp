@@ -15,32 +15,32 @@ float get_length_sqr() {
 	return std::pow(this->x, 2) + std::pow(this->y, 2);
 }
 
-entity operator+(const entity other) {
-	entity ent = entity(this->x + other.x, this->y + other.y);
+vec2f operator+(const vec2f other) {
+	vec2f vec = vec2f(this->x + other.x, this->y + other.y);
+	return vec;
+}
+
+vec2f operator-(const vec2f other) {
+	vec2f ent = vec2f(this->x - other.x, this->y - other.y);
 	return ent;
 }
 
-entity operator-(const entity other) {
-	entity ent = entity(this->x - other.x, this->y - other.y);
+vec2f operator*(const vec2f other) {
+	vec2f ent = vec2f(this->x * other.x, this->y * other.y);
 	return ent;
 }
 
-entity operator*(const entity other) {
-	entity ent = entity(this->x * other.x, this->y * other.y);
+vec2f operator/(const vec2f other) {
+	vec2f ent = vec2f(this->x / other.x, this->y / other.y);
 	return ent;
 }
 
-entity operator/(const entity other) {
-	entity ent = entity(this->x / other.x, this->y / other.y);
-	return ent;
-}
-
-std::ostream& operator<<(std::ostream& os, const entity& ent) {
+std::ostream& operator<<(std::ostream& os, const vec2f ent) {
 	os << "{ " << ent.x << ", " << ent.y << " }";
 	return os;
 }
 
-std::wostream& operator<<(std::wostream& wos, const entity& ent) {
+std::wostream& operator<<(std::wostream& wos, const vec2f ent) {
 	os << "{ " << ent.x << ", " << ent.y << " }";
 	return wos;
 }
