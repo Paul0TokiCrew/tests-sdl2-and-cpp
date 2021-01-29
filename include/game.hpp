@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <window.hpp>
+#include <vec2f.hpp>
 #include <sprite.hpp>
 #include <player_data.hpp>
 #include <character.hpp>

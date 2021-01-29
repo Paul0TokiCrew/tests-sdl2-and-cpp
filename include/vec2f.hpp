@@ -20,8 +20,10 @@ public:
 
 	void move(const float x_speed, const float y_speed);
 
-	float get_length();
-	float get_length_sqr();
+	float get_length() const;
+	float get_length_sqr() const;
+
+	vec2f normalize() const;
 
 	vec2f operator+(const vec2f other);
 	vec2f operator-(const vec2f other);
