@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <ctime>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <window.hpp>
@@ -24,7 +25,6 @@
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);					\
 															\
 	bool game_over = false;									\
-	const int delay = 1000 / FPS;							\
 															\
 	window win = window(#win_name, W, H);					\
 	object_manager* current_obj_man = nullptr;				\
@@ -41,6 +41,9 @@
 #define PRINTLN(txt) std::cout << txt << std::endl;
 
 
+
+float get_current_time();
+float get_current_sdl_time();
 
 void update_datas(object_manager* obj_man);
 

@@ -11,6 +11,8 @@ extern void move_left(character* obj);
 
 BEGIN(Parkour Quest)
 
+	const int delay = 1000 / FPS;
+
 	object_manager obj_man = object_manager();
 	current_obj_man = &obj_man;
 

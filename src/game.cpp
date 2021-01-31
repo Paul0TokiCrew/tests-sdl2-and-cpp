@@ -2,6 +2,14 @@
 
 
 
+float get_current_time() {
+	return ((float) std::clock()) / CLOCKS_PER_SEC;
+}
+
+float get_current_sdl_time() {
+	return SDL_GetTicks() * 0.001f;
+}
+
 void update_datas(object_manager* obj_man) {
 	const Uint8* key = SDL_GetKeyboardState(nullptr);
 
