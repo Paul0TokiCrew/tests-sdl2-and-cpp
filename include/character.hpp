@@ -29,7 +29,6 @@ private:
 	object_manager& lvl;
 
 public:
-	character() { }
 	constexpr character(const int x_speed, const int y_speed, object_manager& lvl) :
 	x_speed(x_speed), y_speed(y_speed), lvl(lvl) { }
 	~character() { }
