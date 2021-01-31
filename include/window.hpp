@@ -35,6 +35,8 @@ public:
 	int get_w() const { return this->w; }
 	int get_h() const { return this->h; }
 
+	int get_refresh_rate() const;
+
 	void clear() const;
 	void clear(const int r, const int g, const int b) const;
 	void clear(const int r, const int g, const int b, const int a) const;
