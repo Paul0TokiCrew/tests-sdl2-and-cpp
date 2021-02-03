@@ -43,7 +43,6 @@
 
 
 float get_current_time();
-float get_current_sdl_time();
 
 void update_datas(object_manager* obj_man);
 

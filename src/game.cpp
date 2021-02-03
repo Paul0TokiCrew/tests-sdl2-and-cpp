@@ -3,10 +3,6 @@
 
 
 float get_current_time() {
-	return ((float) std::clock()) / CLOCKS_PER_SEC;
-}
-
-float get_current_sdl_time() {
 	return SDL_GetTicks() * 0.001f;
 }
 

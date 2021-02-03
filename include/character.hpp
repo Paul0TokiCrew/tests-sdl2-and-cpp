@@ -2,6 +2,7 @@
 
 
 
+#include <cmath>
 #include <SDL2/SDL.h>
 #include <player_data.hpp>
 #include <object.hpp>
@@ -37,9 +38,9 @@ public:
 		jump_count;
 	static player_data dir, action1, action2;
 
-	friend void move_up(character* obj);
-	friend void move_down(character* obj);
-	friend void move_right(character* obj);
-	friend void move_left(character* obj);
+	friend void move_up(character* obj, float time_step);
+	friend void move_down(character* obj, float time_step);
+	friend void move_right(character* obj, float time_step);
+	friend void move_left(character* obj, float time_step);
 
 };

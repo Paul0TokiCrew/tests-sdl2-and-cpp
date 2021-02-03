@@ -12,9 +12,9 @@ player_data character::dir = player_data(LEFT, RIGHT),
 
 
 
-void move_up(character* obj) {
+void move_up(character* obj, float time_step) {
 
-	for (int i = 0; i < obj->y_speed; ++i)
+	for (int i = 0; i < std::ceil(obj->y_speed * time_step); ++i)
 		if (obj->lvl.check_up_collision(CHARACTER_REC))
 			break;
 
@@ -23,9 +23,9 @@ void move_up(character* obj) {
 
 }
 
-void move_down(character* obj) {
+void move_down(character* obj, float time_step) {
 
-	for (int i = 0; i < obj->y_speed; ++i)
+	for (int i = 0; i < std::ceil(obj->y_speed * time_step); ++i)
 		if (obj->lvl.check_down_collision(CHARACTER_REC))
 			break;
 
@@ -34,9 +34,9 @@ void move_down(character* obj) {
 
 }
 
-void move_right(character* obj) {
+void move_right(character* obj, float time_step) {
 
-	for (int i = 0; i < obj->x_speed; ++i)
+	for (int i = 0; i < std::ceil(obj->x_speed * time_step); ++i)
 		if (obj->lvl.check_right_collision(CHARACTER_REC))
 			break;
 
@@ -45,9 +45,9 @@ void move_right(character* obj) {
 
 }
 
-void move_left(character* obj) {
+void move_left(character* obj, float time_step) {
 
-	for (int i = 0; i < obj->x_speed; ++i)
+	for (int i = 0; i < std::ceil(obj->x_speed * time_step); ++i)
 		if (obj->lvl.check_left_collision(CHARACTER_REC))
 			break;
 

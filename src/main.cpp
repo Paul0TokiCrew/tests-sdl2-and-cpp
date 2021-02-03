@@ -19,7 +19,7 @@ BEGIN(Parkour Quest)
 	image lvl_bg = image(win, "res/levels/tutorial.png", { 0, 0, 400, 130 }, { 0, 0, 400 * 4, 130 * 4 } );
 	current_lvl_bg = &lvl_bg;
 
-	character ademir = character(15, 15, obj_man);
+	character ademir = character(150, 150, obj_man);
 	current_character = &ademir;
 
 	sprite al = sprite(win, "res/sprites/ademir/Ademir Jr. Left.png", { 0, 0, 20, 20 }, CHARACTER_REC, 4, 1),
@@ -54,21 +54,21 @@ BEGIN(Parkour Quest)
 
 
 
-	auto update_pos = [&] () -> void {
+	auto update_pos = [&] (float time_step) -> void {
 		if (character::action1 == FALL)
-			move_down(current_character);
+			move_down(current_character, time_step);
 
 		else if (character::action1 == JUMP)
-			move_up(current_character);
+			move_up(current_character, time_step);
 
 
 
 		if (character::action2 == MOVE) {
 			if (character::dir == LEFT)
-				move_left(current_character);
+				move_left(current_character, time_step);
 
 			else
-				move_right(current_character);
+				move_right(current_character, time_step);
 
 		}
 
@@ -104,7 +104,13 @@ BEGIN(Parkour Quest)
 
 	SDL_Event evn;
 
+	float current_time = get_current_time();
+
 	while (!game_over) {
+
+		float new_time = get_current_time();
+		float time_step = new_time - current_time;
+		current_time = new_time;
 
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
@@ -112,13 +118,11 @@ BEGIN(Parkour Quest)
 
 		update_datas(current_obj_man);
 		update_sprites();
-		update_pos();
+		update_pos(time_step);
 
 		win.clear(10, 40, 230);
 		draw();
 		win.update();
-
-		SDL_Delay(delay);
 
 	}
 
