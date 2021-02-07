@@ -2,6 +2,14 @@
 
 BEGIN(eae)
 
+	bool debug = false;
+
+	if (!strcmp(argv[1], "debug"))
+		debug = true;
+
+	vec2f bob = vec2f(8, 6);
+	vec2f bob_origin = vec2f(bob);
+
 	SDL_Event evn;
 
 	float current_time = get_current_time();
@@ -19,9 +27,25 @@ BEGIN(eae)
 			if (evn.type == SDL_QUIT)
 				game_over = true;
 
-		PRINTLN("--------------------------")
-		PRINTLN("current time: " << current_time)
-		PRINTLN("delta time: " << delta_time)
+
+		bob.move(0.1f, 0.1f);
+
+		win.clear(0, 0, 255);
+		win.update();
+
+		if (debug) {
+			PRINTLN("--------------------------")
+
+			PRINTLN("----- time info:")
+			PRINTLN("current time: " << current_time)
+			PRINTLN("delta time: " << delta_time)
+
+			PRINTLN("----- characters pos info:")
+			PRINTLN("bob pos: " << bob)
+			PRINTLN("bob origin: " << bob_origin)
+			PRINTLN("distance: " << vec2f(bob_origin - bob).get_length())
+
+		}
 
 	}
 
