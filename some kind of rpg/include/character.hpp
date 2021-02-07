@@ -16,19 +16,18 @@
 #define IDLE 4
 #define MOVE 5
 
-#define CHARACTER_REC { std::ceil(character::x), std::ceil(character::y), std::ceil(character::w), std::ceil(character::h) }
+#define CHARACTER_REC { character::x, character::y, character::w, character::h }
 
 
 
 class character {
 private:
 	int speed;
-	object_manager& obj_man;
 
 public:
 	character() { }
-	constexpr character(const int speed, object_manager& obj_man) :
-	speed(speed), obj_man(obj_man) { }
+	constexpr character(const int speed) :
+	speed(speed) { }
 	~character() { }
 
 	static int x, y, w, h;

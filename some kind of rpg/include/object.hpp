@@ -9,7 +9,7 @@
 
 class object_manager {
 public:
-	constexpr object_manager() { }
+	object_manager() { }
 	~object_manager() { }
 
 	std::vector<std::pair<

@@ -11,29 +11,21 @@ player_data character::dir = player_data(UP, LEFT),
 
 
 void move_up(character* obj, const float delta_time) {
-	if (obj->obj_man.check_up_collision(CHARACTER_REC))
-		return;
 	character::y += obj->speed * delta_time;
 
 }
 
 void move_down(character* obj, const float delta_time) {
-	if (obj->obj_man.check_down_collision(CHARACTER_REC))
-		return;
 	character::y += obj->speed * delta_time;
 
 }
 
 void move_right(character* obj, const float delta_time) {
-	if (obj->obj_man.check_right_collision(CHARACTER_REC))
-		return;
 	character::x += obj->speed * delta_time;
 
 }
 
 void move_left(character* obj, const float delta_time) {
-	if (obj->obj_man.check_left_collision(CHARACTER_REC))
-		return;
 	character::x += obj->speed * delta_time;
 
 }
