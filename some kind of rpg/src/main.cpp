@@ -10,6 +10,8 @@ BEGIN(eae)
 	vec2f bob = vec2f(8, 6);
 	vec2f bob_origin = vec2f(bob);
 
+	image bob_texture = image(win, "res/wojak.jpg", { 0, 0, 180, 179 }, { 8, 6, 50, 50 });
+
 	SDL_Event evn;
 
 	float current_time = get_current_time();
@@ -29,8 +31,10 @@ BEGIN(eae)
 
 
 		bob.move(0.1f, 0.1f);
+		bob_texture.change_pos(std::ceil(bob.x), std::ceil(bob.y));
 
 		win.clear(0, 0, 255);
+		bob_texture.draw();
 		win.update();
 
 		if (debug) {
