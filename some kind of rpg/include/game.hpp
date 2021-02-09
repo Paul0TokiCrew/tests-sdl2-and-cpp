@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <cmath>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <window.hpp>
@@ -40,5 +41,6 @@
 float get_current_time();
 
 void update_datas();
+void update_pos(vec2f& ent, image& ent_tex, const float speed, const float delta_time);
 
 sprite* def_sprite_by_dir(sprite& u, sprite& d, sprite& r, sprite& l);

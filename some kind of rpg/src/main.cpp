@@ -4,7 +4,7 @@ BEGIN(eae)
 
 	bool debug = false;
 
-	if (!strcmp(argv[1], "debug"))
+	if (argc > 1 && !strcmp(argv[1], "debug"))
 		debug = true;
 
 	vec2f bob = vec2f(8, 6);
@@ -29,9 +29,8 @@ BEGIN(eae)
 			if (evn.type == SDL_QUIT)
 				game_over = true;
 
-
-		bob.move(0.1f, 0.1f);
-		bob_texture.change_pos(std::ceil(bob.x), std::ceil(bob.y));
+		update_datas();
+		update_pos(bob, bob_texture, 500.0f, delta_time);
 
 		win.clear(0, 0, 255);
 		bob_texture.draw();
