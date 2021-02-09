@@ -11,7 +11,7 @@ player_data character::dir = player_data(UP, LEFT),
 
 
 void move_up(character* obj, const float delta_time) {
-	character::pos += obj->speed * delta_time;
+	character::pos.y += obj->speed * delta_time;
 
 }
 
