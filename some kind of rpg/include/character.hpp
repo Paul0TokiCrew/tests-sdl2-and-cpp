@@ -3,6 +3,7 @@
 
 
 #include <SDL2/SDL.h>
+#include <vec2f.hpp>
 #include <player_data.hpp>
 #include <object.hpp>
 
@@ -30,7 +31,8 @@ public:
 	speed(speed) { }
 	~character() { }
 
-	static int x, y, w, h;
+	static vec2f pos;
+	static int w, h;
 	static player_data dir, action;
 
 	void set_speed(const int new_speed) { this->speed = new_speed; }
