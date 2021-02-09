@@ -12,7 +12,7 @@ BEGIN(eae)
 
 	image bob_texture = image(win, "res/wojak.jpg", { 0, 0, 180, 179 }, { 8, 6, 50, 50 });
 
-	SDL_Event evn; ;
+	SDL_Event evn;
 
 	float current_time = get_current_time();
 
