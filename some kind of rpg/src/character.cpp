@@ -5,7 +5,8 @@
 vec2f character::pos = vec2f(0, 0);
 int character::w = 0, character::h = 0;
 
-player_data character::dir = player_data(UP, LEFT),
+player_data character::y_dir = player_data(UP, DOWN),
+	character::x_dir = player_data(RIGHT, LEFT),
 	character::action = player_data(IDLE, MOVE);
 
 

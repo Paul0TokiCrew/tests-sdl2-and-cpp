@@ -33,7 +33,7 @@ public:
 
 	static vec2f pos;
 	static int w, h;
-	static player_data dir, action;
+	static player_data y_dir, x_dir, action;
 
 	void set_speed(const int new_speed) { this->speed = new_speed; }
 	int get_speed() const { return this->speed; }
