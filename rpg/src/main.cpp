@@ -11,6 +11,8 @@
 
 
 
+void update_view(vec2f& ent_view);
+
 int main() {
 	window win = window("RPG", 720, 480);
 
@@ -18,14 +20,13 @@ int main() {
 	vec2f bob_view = vec2f(bob.x + 1, bob.y + 1);
 
 	bool running = true;
-
 	int i = 0;
 
 	SDL_Event evn;
 
-	PRINTLN((bob - bob_view).normalize());
-
 	while (running) {
+
+		update_view(bob_view);
 
 		vec2f bob_view_dir = vec2f((bob_view - bob));
 
@@ -33,19 +34,28 @@ int main() {
 			if (evn.type == SDL_QUIT)
 				running = false;
 
+
 		PRINTLN("------------------")
 
 		if (bob_view_dir.y > 0)
-			PRINTLN("bob is looking at down")
+			PRINTLN("bob is looking down")
+
+		else if (bob_view_dir.y == 0)
+			PRINTLN("bob is looking middle")
 
 		else
-			PRINTLN("bob is looking at up")
+			PRINTLN("bob is looking up")
+
+
 
 		if (bob_view_dir.x > 0)
-			PRINTLN("bob is looking at right")
+			PRINTLN("bob is looking right")
+
+		else if (bob_view_dir.x == 0)
+			PRINTLN("bob is looking middle")
 
 		else
-			PRINTLN("bob is looking at left")
+			PRINTLN("bob is looking left")
 
 		win.clear(i, i, i);
 		win.update();
@@ -58,4 +68,21 @@ int main() {
 
 	}
 	return 0;
+}
+
+void update_view(vec2f& ent_view) {
+	const Uint8* key = SDL_GetKeyboardState(nullptr);
+
+	if (key[SDL_SCANCODE_UP])
+		ent_view.y -= 0.1f;
+
+	if (key[SDL_SCANCODE_DOWN])
+		ent_view.y += 0.1f;
+
+	if (key[SDL_SCANCODE_RIGHT])
+		ent_view.x += 0.1f;
+
+	if (key[SDL_SCANCODE_LEFT])
+		ent_view.x -= 0.1f;
+
 }
