@@ -18,7 +18,8 @@ int main() {
 
 	vec2f chad = vec2f(0, 0);
 	vec2f chad_vel = vec2f(1, 1);
-	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 200, 200 });
+	vec2f chad_max_vel = vec2f(10, 10);
+	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 
 	bool running = true;
 	int i = 0;
@@ -32,14 +33,14 @@ int main() {
 				running = false;
 
 
-		update_pos(chad, chad_img, chad_vel, vec2f(3, 3), 0.01f);
+		update_pos(chad, chad_img, chad_vel, chad_max_vel, 0.01f);
 
 		PRINTLN("chad pos: " << chad)
 		PRINTLN("chad vel: " << chad_vel)
 		PRINTLN("---------------------------")
 
 		win.clear(i, i, i);
-		bob_img.draw();
+		chad_img.draw();
 		win.update();
 
 		if (i < 255)
