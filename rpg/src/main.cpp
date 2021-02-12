@@ -14,6 +14,9 @@
 void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel, const float delta_time);
 
 int main() {
+	SDL_Init(SDL_INIT_VIDEO);
+	IMG_Init(IMG_INIT_PNG);
+
 	window win = window("RPG", 720, 480);
 
 	vec2f chad = vec2f(0, 0);
@@ -35,9 +38,9 @@ int main() {
 
 		update_pos(chad, chad_img, chad_vel, chad_max_vel, 0.01f);
 
+		PRINTLN("---------------------------")
 		PRINTLN("chad pos: " << chad)
 		PRINTLN("chad vel: " << chad_vel)
-		PRINTLN("---------------------------")
 
 		win.clear(i, i, i);
 		chad_img.draw();
@@ -51,6 +54,8 @@ int main() {
 
 	}
 
+	IMG_Quit();
+	SDL_Quit();
 	return 0;
 }
 
