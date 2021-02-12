@@ -28,21 +28,31 @@ int main() {
 	bool running = true;
 	int i = 0;
 
+	float current_time = get_current_time();
+
 	SDL_Event evn;
 
 	while (running) {
+
+		float new_time = get_current_time();
+		float delta_time =  new_time - current_time;
+		current_time = new_time;
+
+		if (delta_time > 0.20f)
+			delta_time = 0.20f;
 
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				running = false;
 
 
-		update_pos(chad, chad_img, chad_vel, chad_max_vel, 0.01f);
+		update_pos(chad, chad_img, chad_vel, chad_max_vel, delta_time);
 
 		PRINTLN("---------------------------")
 		PRINTLN("chad pos: " << chad)
 		PRINTLN("chad vel: " << chad_vel)
 		PRINTLN("time: " << get_current_time())
+		PRINTLN("delta time: " << delta_time)
 
 		win.clear(i, i, i);
 		chad_img.draw();
