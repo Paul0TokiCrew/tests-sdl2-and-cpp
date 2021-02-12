@@ -14,6 +14,8 @@ public:
 	x(x), y(y) { }
 	constexpr vec2f(const vec2f& vec) :
 	x(vec.x), y(vec.y) { }
+	constexpr vec2f(const vec2f&& vec) :
+	x(vec.x), y(vec.y) { }
 	~vec2f() { }
 
 	float x, y;

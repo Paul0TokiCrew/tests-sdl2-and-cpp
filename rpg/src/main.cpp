@@ -27,9 +27,25 @@ int main() {
 
 	while (running) {
 
+		vec2f bob_view_dir = vec2f((bob_view - bob));
+
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				running = false;
+
+		PRINTLN("------------------")
+
+		if (bob_view_dir.y > 0)
+			PRINTLN("bob is looking at down")
+
+		else
+			PRINTLN("bob is looking at up")
+
+		if (bob_view_dir.x > 0)
+			PRINTLN("bob is looking at right")
+
+		else
+			PRINTLN("bob is looking at left")
 
 		win.clear(i, i, i);
 		win.update();
