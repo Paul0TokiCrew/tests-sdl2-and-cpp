@@ -12,6 +12,7 @@
 
 
 void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel, const float delta_time);
+float get_current_time();
 
 int main() {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -41,6 +42,7 @@ int main() {
 		PRINTLN("---------------------------")
 		PRINTLN("chad pos: " << chad)
 		PRINTLN("chad vel: " << chad_vel)
+		PRINTLN("time: " << get_current_time())
 
 		win.clear(i, i, i);
 		chad_img.draw();
@@ -83,4 +85,8 @@ void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel,
 
 	ent_img.change_pos(std::ceil(ent.x), std::ceil(ent.y));
 
+}
+
+float get_current_time() {
+	return SDL_GetTicks() / 1000.0f;
 }
