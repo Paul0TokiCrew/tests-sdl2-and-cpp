@@ -15,6 +15,7 @@ int main() {
 	window win = window("RPG", 720, 480);
 
 	vec2f bob = vec2f(0, 0);
+	vec2f bob_vel = vec2f(0, 0);
 
 	bool running = true;
 	int i = 0;
@@ -23,9 +24,14 @@ int main() {
 
 	while (running) {
 
+		vec2f bob_distance = vec2f(bob - vec2f(0, 0));
+
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				running = false;
+
+
+		PRINTLN(bob_distance.get_length())
 
 		win.clear(i, i, i);
 		win.update();
