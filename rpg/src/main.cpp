@@ -73,6 +73,8 @@ void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel,
 	else if (std::ceil(ent_vel.y) > std::ceil(max_vel.y))
 		ent_vel.y -= delta_time;
 
-	ent_img.change_pos(ent.x, ent.y);
+
+
+	ent_img.change_pos(std::ceil(ent.x), std::ceil(ent.y));
 
 }
