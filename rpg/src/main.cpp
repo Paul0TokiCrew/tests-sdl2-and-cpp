@@ -16,9 +16,9 @@ void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel,
 int main() {
 	window win = window("RPG", 720, 480);
 
-	vec2f bob = vec2f(0, 0);
-	vec2f bob_vel = vec2f(1, 1);
-	image bob_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 200, 200 });
+	vec2f chad = vec2f(0, 0);
+	vec2f chad_vel = vec2f(1, 1);
+	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 200, 200 });
 
 	bool running = true;
 	int i = 0;
@@ -27,17 +27,15 @@ int main() {
 
 	while (running) {
 
-		vec2f bob_distance = vec2f(bob - vec2f(0, 0));
-
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				running = false;
 
 
-		update_pos(bob, bob_img, bob_vel, vec2f(3, 3), 0.01f);
+		update_pos(chad, chad_img, chad_vel, vec2f(3, 3), 0.01f);
 
-		PRINTLN("bob pos: " << bob)
-		PRINTLN("bob vel: " << bob_vel)
+		PRINTLN("chad pos: " << chad)
+		PRINTLN("chad vel: " << chad_vel)
 		PRINTLN("---------------------------")
 
 		win.clear(i, i, i);
