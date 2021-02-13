@@ -12,7 +12,6 @@
 
 
 
-void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel, const float delta_time);
 float get_current_time();
 
 int main() {
@@ -22,10 +21,6 @@ int main() {
 	window win = window("RPG", 720, 480);
 
 	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(0, 0));
-
-	vec2f chad_ = vec2f(0, 0);
-	vec2f chad_vel = vec2f(1, 1);
-	vec2f chad_max_vel = vec2f(10, 10);
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 
 	bool running = true;
@@ -41,6 +36,8 @@ int main() {
 		float delta_time =  new_time - current_time;
 		current_time = new_time;
 
+		vec2f chad_pos = chad.get_pos();
+
 		if (delta_time > 0.20f)
 			delta_time = 0.20f;
 
@@ -49,12 +46,12 @@ int main() {
 				running = false;
 
 
-		update_pos(chad_, chad_img, chad_vel, chad_max_vel, delta_time);
 		chad.update_pos(delta_time);
+		chad_img.change_pos(std::ceil(chad_pos.x), std::ceil(chad_pos.y));
 
 		PRINTLN("---------------------------")
-		PRINTLN("chad pos: " << chad_)
-		PRINTLN("chad vel: " << chad_vel)
+		PRINTLN("chad pos: " << chad.get_pos())
+		PRINTLN("chad vel: " << chad.get_vel())
 		PRINTLN("time: " << get_current_time())
 		PRINTLN("delta time: " << delta_time)
 
@@ -73,32 +70,6 @@ int main() {
 	IMG_Quit();
 	SDL_Quit();
 	return 0;
-}
-
-void update_pos(vec2f& ent, image& ent_img, vec2f& ent_vel, const vec2f max_vel, const float delta_time) {
-	ent.x += ent_vel.x * delta_time,
-	ent.y += ent_vel.y * delta_time;
-
-
-
-	if (std::ceil(ent_vel.x) < std::ceil(max_vel.x))
-		ent_vel.x += delta_time;
-
-	else if (std::ceil(ent_vel.x) > std::ceil(max_vel.x))
-		ent_vel.x -= delta_time;
-
-
-
-	if (std::ceil(ent_vel.y) < std::ceil(max_vel.y))
-		ent_vel.y += delta_time;
-
-	else if (std::ceil(ent_vel.y) > std::ceil(max_vel.y))
-		ent_vel.y -= delta_time;
-
-
-
-	ent_img.change_pos(std::ceil(ent.x), std::ceil(ent.y));
-
 }
 
 float get_current_time() {
