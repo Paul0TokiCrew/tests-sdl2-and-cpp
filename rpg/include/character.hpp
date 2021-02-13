@@ -3,6 +3,7 @@
 
 
 #include <vec2f.hpp>
+#include <SDL2/SDL.h>
 
 
 

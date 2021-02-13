@@ -36,18 +36,20 @@ int main() {
 		float delta_time =  new_time - current_time;
 		current_time = new_time;
 
-		vec2f chad_pos = chad.get_pos();
+		const Uint8* key = SDL_GetKeyboardState(nullptr);
 
 		if (delta_time > 0.20f)
 			delta_time = 0.20f;
+
+
 
 		while (SDL_PollEvent(&evn))
 			if (evn.type == SDL_QUIT)
 				running = false;
 
-
+		chad.update_datas(key);
 		chad.update_pos(delta_time);
-		chad_img.change_pos(std::ceil(chad_pos.x), std::ceil(chad_pos.y));
+		chad_img.change_pos(std::ceil(chad.get_pos().x), std::ceil(chad.get_pos().y));
 
 		PRINTLN("---------------------------")
 		PRINTLN("chad pos: " << chad.get_pos())
