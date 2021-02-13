@@ -15,7 +15,7 @@ protected:
 	window& win;
 
 public:
-	constexpr image(window& win, const char* path, const SDL_Rect src, const SDL_Rect des) :
+	image(window& win, const char* path, const SDL_Rect src, const SDL_Rect des) :
 	img(nullptr), src(src), des(des), win(win) {
 		this->img = IMG_LoadTexture(this->win.get_ren(), path);
 	}

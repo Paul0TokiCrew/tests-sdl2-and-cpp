@@ -1,8 +1,8 @@
-#include <character.cpp>
+#include <character.hpp>
 
 
 
-void update_pos(const float delta_time) {
+void character::update_pos(const float delta_time) {
 	this->pos.x += this->vel.x * delta_time,
 	this->pos.y += this->vel.y * delta_time;
 
@@ -21,9 +21,5 @@ void update_pos(const float delta_time) {
 
 	else if (std::ceil(this->vel.y) > std::ceil(this->max_vel.y))
 		this->vel.y -= delta_time;
-
-
-
-	this->sprite.change_pos(std::ceil(this->pos.x), std::ceil(this->pos.y));
 
 }

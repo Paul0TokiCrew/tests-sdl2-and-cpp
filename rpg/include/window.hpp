@@ -13,13 +13,13 @@ private:
 	const int w, h;
 
 public:
-	constexpr window(const char* title, const int w, const int h) :
+	window(const char* title, const int w, const int h) :
 	win(nullptr), ren(nullptr), w(w), h(h) {
 		this->win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_SHOWN);
 		this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);
 
 	}
-	constexpr window(const char* title, const int w, const int h, const int flags) :
+	window(const char* title, const int w, const int h, const int flags) :
 	win(nullptr), ren(nullptr), w(w), h(h) {
 		this->win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
 		this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);

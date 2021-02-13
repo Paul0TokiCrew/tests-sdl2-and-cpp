@@ -4,6 +4,7 @@
 #include <vec2f.hpp>
 #include <window.hpp>
 #include <image.hpp>
+#include <character.hpp>
 
 
 
@@ -20,7 +21,9 @@ int main() {
 
 	window win = window("RPG", 720, 480);
 
-	vec2f chad = vec2f(0, 0);
+	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(0, 0));
+
+	vec2f chad_ = vec2f(0, 0);
 	vec2f chad_vel = vec2f(1, 1);
 	vec2f chad_max_vel = vec2f(10, 10);
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
@@ -46,10 +49,11 @@ int main() {
 				running = false;
 
 
-		update_pos(chad, chad_img, chad_vel, chad_max_vel, delta_time);
+		update_pos(chad_, chad_img, chad_vel, chad_max_vel, delta_time);
+		chad.update_pos(delta_time);
 
 		PRINTLN("---------------------------")
-		PRINTLN("chad pos: " << chad)
+		PRINTLN("chad pos: " << chad_)
 		PRINTLN("chad vel: " << chad_vel)
 		PRINTLN("time: " << get_current_time())
 		PRINTLN("delta time: " << delta_time)
