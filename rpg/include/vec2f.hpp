@@ -10,11 +10,11 @@
 class vec2f {
 public:
 	vec2f() { }
-	constexpr vec2f(const float x, const float y) :
+	vec2f(const float x, const float y) :
 	x(x), y(y) { }
-	constexpr vec2f(const vec2f& vec) :
+	vec2f(const vec2f& vec) :
 	x(vec.x), y(vec.y) { }
-	constexpr vec2f(const vec2f&& vec) :
+	vec2f(const vec2f&& vec) :
 	x(vec.x), y(vec.y) { }
 	~vec2f() { }
 
