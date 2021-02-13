@@ -23,3 +23,18 @@ void character::update_pos(const float delta_time) {
 		this->vel.y -= delta_time;
 
 }
+
+void character::update_datas(const Uint8* key) {
+	if (key[SDL_SCANCODE_UP])
+		max_vel.y = -1;
+
+	if (key[SDL_SCANCODE_DOWN])
+		max_vel.y = 1;
+
+	if (key[SDL_SCANCODE_RIGHT])
+		max_vel.x = 1;
+
+	if (key[SDL_SCANCODE_LEFT])
+		max_vel.x = -1;
+
+}
