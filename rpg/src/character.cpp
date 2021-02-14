@@ -2,7 +2,10 @@
 
 
 
-void character::update_pos(const float delta_time, const float atr) {
+void character::update_pos(const float delta_time, const float fric) {
+	if (fric < 0)
+		return;
+
 	if (std::ceil(this->vel.x))
 		this->pos.x += this->vel.x * delta_time;
 
@@ -12,18 +15,18 @@ void character::update_pos(const float delta_time, const float atr) {
 
 
 	if (std::ceil(this->vel.x) < std::ceil(this->goal_vel.x))
-		this->vel.x += delta_time * atr;
+		this->vel.x += delta_time * fric;
 
 	else if (std::ceil(this->vel.x) > std::ceil(this->goal_vel.x))
-		this->vel.x -= delta_time * atr;
+		this->vel.x -= delta_time * fric;
 
 
 
 	if (std::ceil(this->vel.y) < std::ceil(this->goal_vel.y))
-		this->vel.y += delta_time * atr;
+		this->vel.y += delta_time * fric;
 
 	else if (std::ceil(this->vel.y) > std::ceil(this->goal_vel.y))
-		this->vel.y -= delta_time * atr;
+		this->vel.y -= delta_time * fric;
 
 }
 
