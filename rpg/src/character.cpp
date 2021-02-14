@@ -11,18 +11,18 @@ void character::update_pos(const float delta_time, const float atr) {
 
 
 
-	if (std::ceil(this->vel.x) < std::ceil(this->max_vel.x))
+	if (std::ceil(this->vel.x) < std::ceil(this->goal_vel.x))
 		this->vel.x += delta_time * atr;
 
-	else if (std::ceil(this->vel.x) > std::ceil(this->max_vel.x))
+	else if (std::ceil(this->vel.x) > std::ceil(this->goal_vel.x))
 		this->vel.x -= delta_time * atr;
 
 
 
-	if (std::ceil(this->vel.y) < std::ceil(this->max_vel.y))
+	if (std::ceil(this->vel.y) < std::ceil(this->goal_vel.y))
 		this->vel.y += delta_time * atr;
 
-	else if (std::ceil(this->vel.y) > std::ceil(this->max_vel.y))
+	else if (std::ceil(this->vel.y) > std::ceil(this->goal_vel.y))
 		this->vel.y -= delta_time * atr;
 
 }
