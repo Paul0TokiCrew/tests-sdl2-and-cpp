@@ -20,7 +20,7 @@ public:
 	vec2f get_vel() const { return this->vel; }
 	vec2f get_max_vel() const { return this->max_vel; }
 
-	void update_pos(const float delta_time);
+	void update_pos(const float delta_time, const float atr);
 	void update_datas(const Uint8* key);
 
 };

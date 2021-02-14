@@ -48,7 +48,7 @@ int main() {
 				running = false;
 
 		chad.update_datas(key);
-		chad.update_pos(delta_time);
+		chad.update_pos(delta_time, 10000);
 		chad_img.change_pos(std::ceil(chad.get_pos().x), std::ceil(chad.get_pos().y));
 
 		PRINTLN("---------------------------")
