@@ -10,7 +10,7 @@
 
 class area_manager {
 private:
-	std::vector<std::pair<vec2f, vec2f>> area_pos;
+	std::vector<std::pair<vec2f, vec2f>> areas;
 
 public:
 	area_manager() { }
