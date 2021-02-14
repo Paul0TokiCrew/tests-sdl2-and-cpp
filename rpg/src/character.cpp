@@ -40,10 +40,10 @@ void character::update_datas(const Uint8* key) {
 
 
 	if (key[SDL_SCANCODE_RIGHT])
-		goal_vel.x = -(max_vel.x);
+		goal_vel.x = max_vel.x;
 
 	if (key[SDL_SCANCODE_LEFT])
-		goal_vel.x = max_vel.x;
+		goal_vel.x = -(max_vel.x);
 
 	if (!(key[SDL_SCANCODE_RIGHT] || key[SDL_SCANCODE_LEFT]))
 		goal_vel.x = 0;

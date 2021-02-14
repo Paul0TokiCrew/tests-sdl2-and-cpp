@@ -20,7 +20,7 @@ int main() {
 
 	window win = window("RPG", 720, 480);
 
-	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(0, 0));
+	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(100, 100));
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 
 	bool running = true;
