@@ -2,9 +2,13 @@
 
 
 
-void character::update_pos(const float delta_time, const float fric) {
+void character::update_pos(const float delta_time, const float fric, const area_manager& area_man) {
 	if (fric < 0)
 		return;
+
+	if (area_man.check_collision(this->pos, vec2f(this->pos.x + 100, this->pos.y + 100))) {	}
+
+
 
 	if (std::ceil(this->vel.x))
 		this->pos.x += this->vel.x * delta_time;

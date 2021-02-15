@@ -23,6 +23,9 @@ int main() {
 	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(100, 100));
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 
+	area_manager area_man = area_manager();
+	area_man.register_area(vec2f(300, 300), vec2f(350, 350));
+
 	bool running = true;
 	int i = 0;
 
@@ -48,7 +51,7 @@ int main() {
 				running = false;
 
 		chad.update_datas(key);
-		chad.update_pos(delta_time, 500);
+		chad.update_pos(delta_time, 500, area_man);
 		chad_img.change_pos(std::ceil(chad.get_pos().x), std::ceil(chad.get_pos().y));
 
 		PRINTLN("---------------------------")

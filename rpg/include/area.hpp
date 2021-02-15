@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <utility>
-#include <tuple>
 #include <vec2f.hpp>
 
 
@@ -17,7 +16,7 @@ public:
 	area_manager() { }
 	~area_manager() { }
 
-	void register_rec(const vec2f xy1, const vec2f xy2);
+	void register_area(const vec2f xy1, const vec2f xy2);
 
 	bool check_collision(const vec2f other_xy1, const vec2f other_xy2) const;
 
