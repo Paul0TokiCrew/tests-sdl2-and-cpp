@@ -1,12 +1,14 @@
 #include <character.hpp>
 
 
+extern std::queue<std::string> msgs;
 
 void character::update_pos(const float delta_time, const float fric, const area_manager& area_man) {
 	if (fric < 0)
 		return;
 
-	if (area_man.check_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {	}
+	if (area_man.check_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y)))
+		msgs.push("collision detected");
 
 
 

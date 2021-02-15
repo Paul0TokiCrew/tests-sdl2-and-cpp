@@ -1,4 +1,6 @@
 #include <iostream>
+#include <queue>
+#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <vec2f.hpp>
@@ -12,6 +14,8 @@
 
 
 
+std::queue<std::string> msgs;
+
 float get_current_time();
 
 int main() {
@@ -20,7 +24,7 @@ int main() {
 
 	window win = window("RPG", 720, 480);
 
-	character chad = character(vec2f(0, 0), vec2f(0, 0), vec2f(100, 100));
+	character chad = character(vec2f(0, 0), vec2f(120, 120), vec2f(0, 0), vec2f(100, 100));
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 
 	area_manager area_man = area_manager();
@@ -52,13 +56,24 @@ int main() {
 
 		chad.update_datas(key);
 		chad.update_pos(delta_time, 500, area_man);
-		chad_img.change_pos(std::ceil(chad.get_pos().x), std::ceil(chad.get_pos().y));
+		chad_img.change_pos(std::ceil(chad.get_xy().x), std::ceil(chad.get_xy().y));
 
 		PRINTLN("---------------------------")
-		PRINTLN("chad pos: " << chad.get_pos())
+		PRINTLN("-- INFO")
+		PRINTLN("chad xy1: " << chad.get_xy())
+		PRINTLN("chad xy2: " << vec2f(chad.get_xy() + chad.get_wh()))
+		PRINTLN("chad wh: " << chad.get_wh())
 		PRINTLN("chad vel: " << chad.get_vel())
 		PRINTLN("time: " << get_current_time())
 		PRINTLN("delta time: " << delta_time)
+		PRINTLN("-- MESSAGES")
+
+		while (!msgs.empty()) {
+
+			PRINTLN(msgs.front())
+			msgs.pop();
+
+		}
 
 		win.clear(i, i, i);
 		chad_img.draw();
