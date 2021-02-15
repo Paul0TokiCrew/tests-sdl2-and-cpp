@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <utility>
+#include <tuple>
 #include <vec2f.hpp>
 
 
@@ -11,7 +12,7 @@
 class area_manager {
 private:
 	std::vector<std::pair<vec2f, vec2f>> line_areas;
-	std::vector<std::pair<vec2f, float>> ang_areas;
+	std::vector<std::tuple<vec2f, float, float>> ang_areas;
 
 public:
 	area_manager() { }
