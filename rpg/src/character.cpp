@@ -6,15 +6,15 @@ void character::update_pos(const float delta_time, const float fric, const area_
 	if (fric < 0)
 		return;
 
-	if (area_man.check_collision(this->pos, vec2f(this->pos.x + 100, this->pos.y + 100))) {	}
+	if (area_man.check_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {	}
 
 
 
 	if (std::ceil(this->vel.x))
-		this->pos.x += this->vel.x * delta_time;
+		this->xy.x += this->vel.x * delta_time;
 
 	if (std::ceil(this->vel.y))
-		this->pos.y += this->vel.y * delta_time;
+		this->xy.y += this->vel.y * delta_time;
 
 
 
