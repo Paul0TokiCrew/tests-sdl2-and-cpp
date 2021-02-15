@@ -16,5 +16,15 @@ void register_rec(const vec2f xy1, const vec2f xy2) {
 	this->line_areas.push_back(std::make_pair(down1, down2));
 	this->line_areas.push_back(std::make_pair(right1, right2));
 	this->line_areas.push_back(std::make_pair(left1, left2));
+}
 
+void register_ang(const vec2f xy, const float r, const float a) {
+	if (a > 360 || a < 0)
+		return;
+
+	this->ang_areas.push_back(std::make_tuple(xy, r, a));
+}
+
+void register_circle(const vec2f xy, const float r) {
+	this->ang_areas.push_back(std::make_tuple(xy, r, 360));
 }

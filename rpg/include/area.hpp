@@ -20,7 +20,7 @@ public:
 
 	void register_line(const vec2f xy1, const vec2f xy2);
 	void register_rec(const vec2f xy1, const vec2f xy2);
-	void register_ang(const vec2f xy, const float r, const float ang);
+	void register_ang(const vec2f xy, const float r, const float a);
 	void register_circle(const vec2f xy, const int r);
 
 };
