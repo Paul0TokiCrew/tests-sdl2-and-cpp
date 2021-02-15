@@ -23,4 +23,6 @@ public:
 	void register_ang(const vec2f xy, const float r, const float a);
 	void register_circle(const vec2f xy, const int r);
 
+	bool check_collision(const vec2f other_xy, const vec2f other_wh) const;
+
 };

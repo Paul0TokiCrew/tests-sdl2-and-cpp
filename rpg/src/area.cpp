@@ -28,3 +28,18 @@ void register_ang(const vec2f xy, const float r, const float a) {
 void register_circle(const vec2f xy, const float r) {
 	this->ang_areas.push_back(std::make_tuple(xy, r, 360));
 }
+
+bool check_collision(const vec2f other_xy, const vec2f other_wh) const {
+	auto i = this->line_areas.begin();
+
+	for (; i != this->line_areas.end(); ++i) {
+
+		float line_length = vec2f(i.second - i.first).get_length();
+
+		if (a.x == b.x && f(a.x) == f(b.x))
+			return true;
+
+	}
+
+	return false;
+}
