@@ -29,6 +29,7 @@ bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_x
 
 		if (
 			other_xy1.x <= i.second.x &&
+			other_xy2.x >= i.first.x &&
 			other_xy1.y <= i.second.y &&
 			other_xy2.y >= i.first.y &&
 			other_vel.y < 0
@@ -47,6 +48,7 @@ bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other
 		if (
 			other_xy1.x <= i.second.x &&
 			other_xy2.x >= i.first.x &&
+			other_xy1.y <= i.second.y &&
 			other_xy2.y >= i.first.y &&
 			other_vel.y > 0
 		)
@@ -62,6 +64,7 @@ bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f othe
 	for (auto i : this->areas) {
 
 		if (
+			other_xy1.x <= i.second.x &&
 			other_xy2.x >= i.first.x &&
 			other_xy1.y <= i.second.y &&
 			other_xy2.y >= i.first.y &&
@@ -80,6 +83,7 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 
 		if (
 			other_xy1.x <= i.second.x &&
+			other_xy2.x >= i.first.x &&
 			other_xy1.y <= i.second.y &&
 			other_xy2.y >= i.first.y &&
 			other_vel.x < 0

@@ -25,7 +25,7 @@ public:
 	vec2f get_goal_vel() const { return this->goal_vel; }
 	vec2f get_max_vel() const { return this->max_vel; }
 
-	void update_pos(const float delta_time, const float fric, const area_manager& area_man);
+	void update_pos(const float delta_time, const float fric, const area_manager area_man);
 	void update_datas(const Uint8* key);
 
 };
