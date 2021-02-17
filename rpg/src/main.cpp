@@ -30,6 +30,7 @@ int main() {
 
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350));
+	area_man.register_area(vec2f(500, 100), vec2f(600, 400));
 
 	bool running = true;
 	int i = 0;

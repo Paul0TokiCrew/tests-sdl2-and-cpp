@@ -3,7 +3,7 @@
 
 
 #include <vector>
-#include <utility>
+#include <tuple>
 #include <vec2f.hpp>
 #include <image.hpp>
 
@@ -11,15 +11,16 @@
 
 class area_manager {
 private:
-	std::vector<std::pair<vec2f, vec2f>> areas;
+	std::vector<std::tuple<vec2f, vec2f, const image*>> areas;
 
 public:
 	area_manager() { }
 	~area_manager() { }
 
-	void register_area(const vec2f xy1, const vec2f xy2);
+	void register_area(const vec2f xy1, const vec2f xy2, const image* tex = nullptr);
 
 	bool check_trigger(const vec2f other_xy1, const vec2f other_xy2) const;
+
 	bool check_up_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const;
 	bool check_down_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const;
 	bool check_right_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const;

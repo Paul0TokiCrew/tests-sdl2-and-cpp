@@ -2,8 +2,8 @@
 
 
 
-void area_manager::register_area(const vec2f xy1, const vec2f xy2) {
-	this->areas.push_back(std::make_pair(xy1, xy2));
+void area_manager::register_area(const vec2f xy1, const vec2f xy2, const image* tex) {
+	this->areas.push_back(std::make_tuple(xy1, xy2, tex));
 }
 
 bool area_manager::check_trigger(const vec2f other_xy1, const vec2f other_xy2) const {
@@ -11,10 +11,10 @@ bool area_manager::check_trigger(const vec2f other_xy1, const vec2f other_xy2) c
 	for (auto i : this->areas) {
 
 		if (
-			other_xy1.x <= i.second.x &&
-			other_xy2.x >= i.first.x &&
-			other_xy1.y <= i.second.y &&
-			other_xy2.y >= i.first.y
+			other_xy1.x <= std::get<0>(i).x &&
+			other_xy2.x >= std::get<0>(i).x &&
+			other_xy1.y <= std::get<1>(i).y &&
+			other_xy2.y >= std::get<0>(i).y
 		)
 			return true;
 
@@ -28,11 +28,11 @@ bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_x
 	for (auto i : this->areas) {
 
 		if (
-			other_xy1.x <= i.second.x &&
-			other_xy2.x >= i.first.x &&
-			other_xy1.y <= i.second.y &&
-			other_xy2.y > i.second.y &&
-			other_xy1.y > i.first.y
+			other_xy1.x <= std::get<1>(i).x &&
+			other_xy2.x >= std::get<0>(i).x &&
+			other_xy1.y <= std::get<1>(i).y &&
+			other_xy2.y > std::get<1>(i).y &&
+			other_xy1.y > std::get<0>(i).y
 		)
 			return true;
 
@@ -46,11 +46,11 @@ bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other
 	for (auto i : this->areas) {
 
 		if (
-			other_xy1.x <= i.second.x &&
-			other_xy2.x >= i.first.x &&
-			other_xy1.y < i.first.y &&
-			other_xy2.y >= i.first.y &&
-			other_xy2.y < i.second.y 
+			other_xy1.x <= std::get<1>(i).x &&
+			other_xy2.x >= std::get<0>(i).x &&
+			other_xy1.y < std::get<0>(i).y &&
+			other_xy2.y >= std::get<0>(i).y &&
+			other_xy2.y < std::get<1>(i).y 
 		)
 			return true;
 
@@ -64,11 +64,11 @@ bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f othe
 	for (auto i : this->areas) {
 
 		if (
-			other_xy1.x < i.first.x &&
-			other_xy2.x >= i.first.x &&
-			other_xy1.y <= i.second.y &&
-			other_xy2.y >= i.first.y &&
-			other_xy2.x < i.second.x
+			other_xy1.x < std::get<0>(i).x &&
+			other_xy2.x >= std::get<0>(i).x &&
+			other_xy1.y <= std::get<1>(i).y &&
+			other_xy2.y >= std::get<0>(i).y &&
+			other_xy2.x < std::get<1>(i).x
 		)
 			return true;
 
@@ -82,11 +82,11 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 	for (auto i : this->areas) {
 
 		if (
-			other_xy1.x <= i.second.x &&
-			other_xy2.x > i.second.x &&
-			other_xy1.y <= i.second.y &&
-			other_xy2.y >= i.first.y &&
-			other_xy1.x > i.first.x
+			other_xy1.x <= std::get<1>(i).x &&
+			other_xy2.x > std::get<1>(i).x &&
+			other_xy1.y <= std::get<1>(i).y &&
+			other_xy2.y >= std::get<0>(i).y &&
+			other_xy1.x > std::get<0>(i).x
 		)
 			return true;
 
