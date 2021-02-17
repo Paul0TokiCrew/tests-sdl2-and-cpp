@@ -12,10 +12,10 @@ class image {
 protected:
 	SDL_Texture* img;
 	SDL_Rect src, des;
-	window& win;
+	const window& win;
 
 public:
-	image(window& win, const char* path, const SDL_Rect src, const SDL_Rect des) :
+	image(const window& win, const char* path, const SDL_Rect src, const SDL_Rect des) :
 	img(nullptr), src(src), des(des), win(win) {
 		this->img = IMG_LoadTexture(this->win.get_ren(), path);
 	}
