@@ -27,6 +27,7 @@ int main() {
 	character chad = character(vec2f(0, 0), vec2f(120, 120), vec2f(0, 0), vec2f(100, 100));
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { 0, 0, 120, 120 });
 	image gru_no = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 300, 300, 50, 50 });
+	image gru_no2 = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 500, 100, 100, 300 });
 
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350));
@@ -80,6 +81,7 @@ int main() {
 		win.clear(i, i, i);
 		chad_img.draw();
 		gru_no.draw();
+		gru_no2.draw();
 		win.update();
 
 		if (i < 255)
