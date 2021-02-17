@@ -31,7 +31,8 @@ bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_x
 			other_xy1.x <= i.second.x &&
 			other_xy2.x >= i.first.x &&
 			other_xy1.y <= i.second.y &&
-			other_xy2.y > i.second.y
+			other_xy2.y > i.second.y &&
+			other_xy1.y > i.first.y
 		)
 			return true;
 
@@ -48,7 +49,8 @@ bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other
 			other_xy1.x <= i.second.x &&
 			other_xy2.x >= i.first.x &&
 			other_xy1.y < i.first.y &&
-			other_xy2.y >= i.first.y
+			other_xy2.y >= i.first.y &&
+			other_xy2.y < i.second.y 
 		)
 			return true;
 
@@ -65,7 +67,8 @@ bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f othe
 			other_xy1.x < i.first.x &&
 			other_xy2.x >= i.first.x &&
 			other_xy1.y <= i.second.y &&
-			other_xy2.y >= i.first.y
+			other_xy2.y >= i.first.y &&
+			other_xy2.x < i.second.x
 		)
 			return true;
 
@@ -82,7 +85,8 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 			other_xy1.x <= i.second.x &&
 			other_xy2.x > i.second.x &&
 			other_xy1.y <= i.second.y &&
-			other_xy2.y >= i.first.y
+			other_xy2.y >= i.first.y &&
+			other_xy1.x > i.first.x
 		)
 			return true;
 
