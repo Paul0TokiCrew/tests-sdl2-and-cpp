@@ -26,4 +26,6 @@ public:
 	bool check_right_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const;
 	bool check_left_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const;
 
+	void draw_areas() const;
+
 };

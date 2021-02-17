@@ -94,3 +94,14 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 
 	return false;
 }
+
+void area_manager::draw_areas() const {
+
+	for (auto i : this->areas) {
+
+		if (std::get<2>(i) != nullptr)
+			std::get<2>(i)->draw();
+
+	}
+
+}
