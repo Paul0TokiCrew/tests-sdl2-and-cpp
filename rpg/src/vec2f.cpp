@@ -49,6 +49,48 @@ vec2f vec2f::operator/(const vec2f other) const {
 
 
 
+bool operator==(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x == rhs.x && lhs.y == rhs.y)
+		return true;
+
+	return false;
+}
+
+bool operator!=(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x != rhs.x && lhs.y != rhs.y)
+		return true;
+
+	return false;
+}
+
+bool operator>(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x > rhs.x && lhs.y > rhs.y)
+		return true;
+
+	return false;
+}
+
+bool operator<(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x < rhs.x && lhs.y < rhs.y)
+		return true;
+
+	return false;
+}
+
+bool operator>=(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x >= rhs.x && lhs.y >= rhs.y)
+		return true;
+
+	return false;
+}
+
+bool operator<=(const vec2f lhs, const vec2f rhs) {
+	if (lhs.x <= rhs.x && lhs.y <= rhs.y)
+		return true;
+
+	return false;
+}
+
 std::ostream& operator<<(std::ostream& os, const vec2f vec) {
 	os << "{ " << vec.x << ", " << vec.y << " }";
 	return os;

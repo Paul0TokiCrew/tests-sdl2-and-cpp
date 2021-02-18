@@ -33,6 +33,13 @@ public:
 	vec2f operator*(const vec2f other) const;
 	vec2f operator/(const vec2f other) const;
 
+	friend bool operator==(const vec2f lhs, const vec2f rhs);
+	friend bool operator!=(const vec2f lhs, const vec2f rhs);
+	friend bool operator>(const vec2f lhs, const vec2f rhs);
+	friend bool operator<(const vec2f lhs, const vec2f rhs);
+	friend bool operator>=(const vec2f lhs, const vec2f rhs);
+	friend bool operator<=(const vec2f lhs, const vec2f rhs);
+
 	friend std::ostream& operator<<(std::ostream& os, const vec2f vec);
 	friend std::wostream& operator<<(std::wostream& wos, const vec2f vec);
 
