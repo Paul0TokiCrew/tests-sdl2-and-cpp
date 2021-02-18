@@ -30,8 +30,8 @@ int main() {
 	image gru_no2 = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 500, 100, 100, 300 });
 
 	area_manager area_man = area_manager();
-	area_man.register_area(vec2f(300, 300), vec2f(350, 350));
-	area_man.register_area(vec2f(500, 100), vec2f(600, 400));
+	area_man.register_area(vec2f(300, 300), vec2f(350, 350), &gru_no);
+	area_man.register_area(vec2f(500, 100), vec2f(600, 400), &gru_no2);
 
 	bool running = true;
 	int i = 0;
@@ -80,8 +80,7 @@ int main() {
 
 		win.clear(i, i, i);
 		chad_img.draw();
-		gru_no.draw();
-		gru_no2.draw();
+		area_man.draw_areas();
 		win.update();
 
 		if (i < 255)
