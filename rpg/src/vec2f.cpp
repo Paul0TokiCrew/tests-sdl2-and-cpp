@@ -47,6 +47,12 @@ vec2f vec2f::operator/(const vec2f other) const {
 	return vec;
 }
 
+vec2f& vec2f::operator=(const vec2f new_vec) {
+	this->x = new_vec.x;
+	this->y = new_vec.y;
+	return *this;
+}
+
 
 
 bool operator==(const vec2f lhs, const vec2f rhs) {

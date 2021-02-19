@@ -33,6 +33,8 @@ public:
 	vec2f operator*(const vec2f other) const;
 	vec2f operator/(const vec2f other) const;
 
+	vec2f& operator=(const vec2f new_vec);
+
 	friend bool operator==(const vec2f lhs, const vec2f rhs);
 	friend bool operator!=(const vec2f lhs, const vec2f rhs);
 	friend bool operator>(const vec2f lhs, const vec2f rhs);
