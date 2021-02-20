@@ -20,6 +20,8 @@ public:
 	win(win), cam_pos(vec2f(0, 0)), ref_xy1(ref_xy1), ref_xy2(ref_xy2), lim_xy1(lim_xy1), lim_xy2(lim_xy2), start_xy1(start_xy1), start_xy2(start_xy2) { }
 	~camera() { }
 
+	vec2f get_cam_pos() const { return this->cam_pos; }
+
 	void update_cam(const vec2f& new_xy1, const vec2f& new_xy2);
 
 };

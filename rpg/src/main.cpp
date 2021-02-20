@@ -70,6 +70,7 @@ int main() {
 		PRINTLN("chad xy2: " << vec2f(chad.get_xy() + chad.get_wh()))
 		PRINTLN("chad wh: " << chad.get_wh())
 		PRINTLN("chad vel: " << chad.get_vel())
+		PRINTLN("chad cam xy1: " << chad_cam.get_cam_pos())
 		PRINTLN("time: " << get_current_time())
 		PRINTLN("delta time: " << delta_time)
 		PRINTLN("-- MESSAGES")
