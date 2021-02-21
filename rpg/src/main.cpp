@@ -30,7 +30,7 @@ int main() {
 	image gru_no = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 300, 300, 50, 50 });
 	image gru_no2 = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 500, 100, 100, 300 });
 
-	camera chad_cam = camera(win, chad.get_xy(), vec2f(chad.get_xy() + chad.get_wh()), vec2f(0, 0), vec2f(0, 0));
+	camera chad_cam = camera(chad.get_xy());
 
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350), &gru_no);
@@ -64,13 +64,15 @@ int main() {
 		chad.update_pos(delta_time, 500, area_man);
 		chad_img.change_pos(std::ceil(chad.get_xy().x), std::ceil(chad.get_xy().y));
 
+		chad_cam.update_cam(chad.get_xy());
+
 		PRINTLN("---------------------------")
 		PRINTLN("-- INFO")
 		PRINTLN("chad xy1: " << chad.get_xy())
 		PRINTLN("chad xy2: " << vec2f(chad.get_xy() + chad.get_wh()))
 		PRINTLN("chad wh: " << chad.get_wh())
 		PRINTLN("chad vel: " << chad.get_vel())
-		PRINTLN("chad cam xy1: " << chad_cam.get_cam_pos())
+		PRINTLN("chad cam pos: " << chad_cam.get_cam_pos())
 		PRINTLN("time: " << get_current_time())
 		PRINTLN("delta time: " << delta_time)
 		PRINTLN("-- MESSAGES")
