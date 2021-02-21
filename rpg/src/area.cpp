@@ -95,6 +95,16 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 	return false;
 }
 
+void area_manager::change_areas_pos(const vec2f mod) {
+	
+	for (auto i : this->areas) {
+
+		std::get<2>(i) = mod;
+
+	}
+
+}
+
 void area_manager::draw_areas() const {
 
 	for (auto i : this->areas) {
