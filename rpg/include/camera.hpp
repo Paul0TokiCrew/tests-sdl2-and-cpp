@@ -22,6 +22,6 @@ public:
 
 	vec2f get_cam_pos() const { return this->cam_pos; }
 
-	void update_cam(const vec2f new_ref);
+	void update_cam();
 
 };
