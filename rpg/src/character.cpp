@@ -7,7 +7,7 @@ void character::update_pos(const float delta_time, const float fric, const area_
 	if (fric < 0)
 		return;
 
-	if (area_man.check_up_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y), this->vel)) {
+	if (area_man.check_up_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {
 		msgs.push("up collision detected");
 
 		if (this->vel.y < 0)
@@ -15,7 +15,7 @@ void character::update_pos(const float delta_time, const float fric, const area_
 
 	}
 
-	if (area_man.check_down_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y), this->vel)) {
+	if (area_man.check_down_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {
 		msgs.push("down collision detected");
 
 		if (this->vel.y > 0)
@@ -23,7 +23,7 @@ void character::update_pos(const float delta_time, const float fric, const area_
 
 	}
 
-	if (area_man.check_right_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y), this->vel)) {
+	if (area_man.check_right_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {
 		msgs.push("right collision detected");
 
 		if (this->vel.x > 0)
@@ -31,7 +31,7 @@ void character::update_pos(const float delta_time, const float fric, const area_
 
 	}
 
-	if (area_man.check_left_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y), this->vel)) {
+	if (area_man.check_left_collision(this->xy, vec2f(this->xy.x + this->wh.x, this->xy.y + this->wh.y))) {
 		msgs.push("left collision detected");
 
 		if (this->vel.x < 0)
