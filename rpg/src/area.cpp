@@ -2,7 +2,7 @@
 
 
 
-void area_manager::register_area(const vec2f xy1, const vec2f xy2, const image* tex) {
+void area_manager::register_area(const vec2f xy1, const vec2f xy2, image* tex) {
 	this->areas.push_back(std::make_tuple(xy1, xy2, tex));
 }
 
@@ -23,7 +23,7 @@ bool area_manager::check_trigger(const vec2f other_xy1, const vec2f other_xy2) c
 	return false;
 }
 
-bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const {
+bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_xy2) const {
 
 	for (auto i : this->areas) {
 
@@ -41,7 +41,7 @@ bool area_manager::check_up_collision(const vec2f other_xy1, const vec2f other_x
 	return false;
 }
 
-bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const {
+bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other_xy2) const {
 
 	for (auto i : this->areas) {
 
@@ -59,7 +59,7 @@ bool area_manager::check_down_collision(const vec2f other_xy1, const vec2f other
 	return false;
 }
 
-bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const {
+bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f other_xy2) const {
 
 	for (auto i : this->areas) {
 
@@ -77,7 +77,7 @@ bool area_manager::check_right_collision(const vec2f other_xy1, const vec2f othe
 	return false;
 }
 
-bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other_xy2, const vec2f other_vel) const {
+bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other_xy2) const {
 
 	for (auto i : this->areas) {
 
@@ -98,8 +98,9 @@ bool area_manager::check_left_collision(const vec2f other_xy1, const vec2f other
 void area_manager::change_areas_pos(const vec2f mod) {
 
 	for (auto i : this->areas) {
-
-		std::get<2>(i) = mod;
+		
+		image*& img = std::get<2>(i);
+		img->change_pos(img->get_des_x() - mod.x, img->get_des_y() - mod.y);
 
 	}
 
