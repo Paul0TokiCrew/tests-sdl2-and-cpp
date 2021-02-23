@@ -17,7 +17,7 @@ private:
 
 public:
 	camera(const vec2f ref) :
-	cam_pos(0, 0), ref(ref), x_diff(this->ref.x - this->cam_pos.x), y_diff(this->ref.y - this->cam_pos.y) { }
+		cam_pos(0, 0), ref(ref), x_diff(this->ref.x - this->cam_pos.x), y_diff(this->ref.y - this->cam_pos.y) { }
 	~camera() { }
 
 	vec2f get_cam_pos() const { return this->cam_pos; }

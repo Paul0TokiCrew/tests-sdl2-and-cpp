@@ -11,11 +11,11 @@ class vec2f {
 public:
 	vec2f() { }
 	vec2f(const float x, const float y) :
-	x(x), y(y) { }
+		x(x), y(y) { }
 	vec2f(const vec2f& vec) :
-	x(vec.x), y(vec.y) { }
+		x(vec.x), y(vec.y) { }
 	vec2f(const vec2f&& vec) :
-	x(vec.x), y(vec.y) { }
+		x(vec.x), y(vec.y) { }
 	~vec2f() { }
 
 	float x, y;
