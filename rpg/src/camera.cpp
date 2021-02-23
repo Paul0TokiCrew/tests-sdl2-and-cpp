@@ -19,4 +19,7 @@ void camera::update_cam() {
 	if (prev_x_diff < this->x_diff || prev_x_diff > this->x_diff)
 		this->cam_pos.x += this->x_diff - prev_x_diff;
 
+	if (prev_y_diff > this->y_diff || prev_y_diff < this->y_diff)
+		this->cam_pos.y += this->y_diff - prev_y_diff;
+
 }
