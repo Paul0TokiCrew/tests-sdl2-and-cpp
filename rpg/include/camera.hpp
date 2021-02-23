@@ -9,11 +9,12 @@
 
 class camera {
 private:
-	vec2f cam_pos, ref, start;
+	vec2f cam_pos, ref;
+	float x_diff, y_diff;
 
 public:
-	camera(const vec2f ref, const vec2f start = vec2f(0, 0)) :
-	cam_pos(0, 0), ref(ref), start(start) { }
+	camera(const vec2f ref) :
+	cam_pos(0, 0), ref(ref), x_diff(this->ref.x - this->cam_pos.x), y_diff(this->ref.y - this->cam_pos.y) { }
 	~camera() { }
 
 	vec2f get_cam_pos() const { return this->cam_pos; }
