@@ -31,6 +31,7 @@ int main() {
 	image gru_no2 = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 500, 100, 100, 300 });
 
 	camera chad_cam = camera(chad.get_xy());
+	vec2f prev_cam_pos = chad_cam.get_cam_pos();
 
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350), &gru_no);
@@ -65,6 +66,7 @@ int main() {
 		chad_img.change_pos(std::ceil(chad.get_xy().x), std::ceil(chad.get_xy().y));
 		chad_cam.update_cam(chad.get_xy());
 
+		if (prev_cam_pos != chad_cam.get_cam_pos())
 		area_man.change_areas_pos(chad_cam.get_cam_pos());
 
 		PRINTLN("---------------------------")
