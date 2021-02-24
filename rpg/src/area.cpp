@@ -100,7 +100,7 @@ void area_manager::change_areas_pos(const vec2f mod) {
 	for (auto i : this->areas) {
 		
 		image*& img = std::get<2>(i);
-		img->change_pos(img->get_des_x() + mod.x, img->get_des_y() + mod.y);
+		img->change_pos(img->get_old_des_x() + mod.x, img->get_old_des_y() + mod.y);
 
 	}
 
