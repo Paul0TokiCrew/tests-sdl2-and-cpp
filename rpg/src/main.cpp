@@ -67,9 +67,7 @@ int main() {
 		chad.update_pos(delta_time, 500, area_man);
 		chad_img.change_pos(std::ceil(chad.get_xy().x), std::ceil(chad.get_xy().y));
 		chad_cam.update_cam(chad.get_xy());
-
-		if (prev_cam_pos != chad_cam.get_cam_pos())
-			area_man.change_areas_pos(chad_cam.get_cam_pos());
+		area_man.change_areas_pos(chad_cam.get_cam_pos());
 
 		PRINTLN("---------------------------")
 		PRINTLN("-- INFO")
