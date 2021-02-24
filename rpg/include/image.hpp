@@ -12,11 +12,12 @@ class image {
 protected:
 	SDL_Texture* img;
 	SDL_Rect src, des;
+	const SDL_Rect old_des;
 	const window& win;
 
 public:
 	image(const window& win, const char* path, const SDL_Rect src, const SDL_Rect des) :
-		img(nullptr), src(src), des(des), win(win) {
+		img(nullptr), src(src), des(des), old_des(des), win(win) {
 		this->img = IMG_LoadTexture(this->win.get_ren(), path);
 	}
 	~image() {
@@ -32,6 +33,11 @@ public:
 	int get_des_y() const { return this->des.y; }
 	int get_des_w() const { return this->des.w; }
 	int get_des_h() const { return this->des.h; }
+
+	int get_old_des_x() const { return this->old_des.x; }
+	int get_old_des_y() const { return this->old_des.y; }
+	int get_old_des_w() const { return this->old_des.w; }
+	int get_old_des_h() const { return this->old_des.h; }
 
 	void change_frame_pos(const int x, const int y);
 	void change_frame_size(const int w, const int h);
