@@ -67,23 +67,39 @@ void character::update_pos(const float delta_time, const float fric, const area_
 
 void character::update_datas(const Uint8* key) {
 	if (key[SDL_SCANCODE_UP])
-		goal_vel.y = -(max_vel.y);
+		this->goal_vel.y = -(this->max_vel.y);
 
-	if (key[SDL_SCANCODE_DOWN])
-		goal_vel.y = max_vel.y;
+	else if (key[SDL_SCANCODE_DOWN])
+		this->goal_vel.y = this->max_vel.y;
 
-	if (!(key[SDL_SCANCODE_UP] || key[SDL_SCANCODE_DOWN]))
-		goal_vel.y = 0;
+	else
+		this->goal_vel.y = 0;
 
 
 
 	if (key[SDL_SCANCODE_RIGHT])
-		goal_vel.x = max_vel.x;
+		this->goal_vel.x = this->max_vel.x;
 
-	if (key[SDL_SCANCODE_LEFT])
-		goal_vel.x = -(max_vel.x);
+	else if (key[SDL_SCANCODE_LEFT])
+		this->goal_vel.x = -(this->max_vel.x);
 
-	if (!(key[SDL_SCANCODE_RIGHT] || key[SDL_SCANCODE_LEFT]))
-		goal_vel.x = 0;
+	else
+		this->goal_vel.x = 0;
+
+
+
+	if (key[SDL_SCANCODE_Z]){
+		
+		if (this->is_running) {
+			this->max_vel = this->max_vel / vec2f(2, 2);
+			this->is_running = false;
+
+		} else {
+			this->max_vel = this->max_vel * vec2f(2, 2);
+			this->is_running = true;
+
+		}
+
+	}
 
 }
