@@ -6,6 +6,7 @@
 #include <vec2f.hpp>
 #include <window.hpp>
 #include <image.hpp>
+#include <area.hpp>
 #include <camera.hpp>
 #include <character.hpp>
 
