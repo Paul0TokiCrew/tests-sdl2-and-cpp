@@ -24,20 +24,9 @@ public:
 		SDL_DestroyTexture(this->img);
 	}
 
-	int get_src_x() const { return this->src.x; }
-	int get_src_y() const { return this->src.y; }
-	int get_src_w() const { return this->src.w; }
-	int get_src_h() const { return this->src.h; }
-
-	int get_des_x() const { return this->des.x; }
-	int get_des_y() const { return this->des.y; }
-	int get_des_w() const { return this->des.w; }
-	int get_des_h() const { return this->des.h; }
-
-	int get_old_des_x() const { return this->old_des.x; }
-	int get_old_des_y() const { return this->old_des.y; }
-	int get_old_des_w() const { return this->old_des.w; }
-	int get_old_des_h() const { return this->old_des.h; }
+	SDL_Rect get_src() const { return this->src }
+	SDL_Rect get_des() const { return this->des; }
+	SDL_Rect get_old_des() const { return this->old_des; }
 
 	void change_frame_pos(const int x, const int y);
 	void change_frame_size(const int w, const int h);
