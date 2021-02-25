@@ -24,7 +24,7 @@ public:
 		SDL_DestroyTexture(this->img);
 	}
 
-	SDL_Rect get_src() const { return this->src }
+	SDL_Rect get_src() const { return this->src; }
 	SDL_Rect get_des() const { return this->des; }
 	SDL_Rect get_old_des() const { return this->old_des; }
 
