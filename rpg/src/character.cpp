@@ -1,6 +1,7 @@
 #include <character.hpp>
 
 
+
 extern std::queue<std::string> msgs;
 
 void character::update_pos(const float delta_time, const float fric, const area_manager area_man) {

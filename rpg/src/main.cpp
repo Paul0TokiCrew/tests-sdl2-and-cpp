@@ -34,14 +34,12 @@ int main() {
 	image gru_no2 = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 500, 100, 100, 300 });
 
 	camera chad_cam = camera(chad.get_xy());
-	vec2f prev_cam_pos = chad_cam.get_cam_pos();
 
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350), &gru_no);
 	area_man.register_area(vec2f(500, 100), vec2f(600, 400), &gru_no2);
 
 	bool running = true;
-	int i = 0;
 
 	float current_time = get_current_time();
 
@@ -66,7 +64,6 @@ int main() {
 
 		chad.update_datas(key);
 		chad.update_pos(delta_time, 500, area_man);
-		chad_img.change_pos(W / 2 - 60, H / 2 - 60);
 		chad_cam.update_cam(chad.get_xy());
 		area_man.change_areas_pos(chad_cam.get_cam_pos());
 
@@ -88,7 +85,7 @@ int main() {
 
 		}
 
-		win.clear(i, i, i);
+		win.clear(255, 255, 255);
 		chad_img.draw();
 		area_man.draw_areas();
 		win.update();
