@@ -28,6 +28,8 @@ int main() {
 
 	const window win = window("RPG", W, H);
 
+	vec2f cam_ref = vec2f(0, 0);
+
 	character chad = character(vec2f(W / 2 - 60, H / 2 - 60), vec2f(120, 120), vec2f(0, 0), vec2f(100, 100));
 	image chad_img = image(win, "res/chad.png", { 0, 0, 600, 600 }, { W / 2 - 60, H / 2 - 60, 120, 120 });
 	image gru_no = image(win, "res/no.jpg", { 0, 0, 1280, 720 }, { 300, 300, 50, 50 });
@@ -38,6 +40,10 @@ int main() {
 	area_manager area_man = area_manager();
 	area_man.register_area(vec2f(300, 300), vec2f(350, 350), &gru_no);
 	area_man.register_area(vec2f(500, 100), vec2f(600, 400), &gru_no2);
+
+	auto update_ref = [&] () -> void {
+		cam_ref = chad.get_xy();
+	};
 
 	auto draw = [&] () -> void {
 		chad_img.draw();
@@ -69,7 +75,9 @@ int main() {
 
 		chad.update_datas(key);
 		chad.update_pos(delta_time, 500, area_man);
-		chad_cam.update_cam(chad.get_xy());
+		update_ref();
+
+		chad_cam.update_cam(cam_ref);
 		area_man.change_areas_pos(chad_cam.get_cam_pos());
 
 		PRINTLN("---------------------------")
