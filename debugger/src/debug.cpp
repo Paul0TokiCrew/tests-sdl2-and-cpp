@@ -2,6 +2,13 @@
 
 
 
+void debugger::add_status(std::string* stat) {
+	debugger::status.push_back(stat);
+}
+
 void debugger::debug() {
-    std::cout << "debug" << std::endl;
+
+	for (auto i : debugger::status)
+		std::cout << *i << std::endl;
+
 }
